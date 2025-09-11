@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FireFIghter_1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace FireFighter_1
     {
         public static void End()
         {
-            Console.WriteLine($"\nYou played {Player.Progress}0% of the game");
-            Console.WriteLine("Thank you for playing Firefighter 1");
+            Typewriter_Method.SlowType($"\nYou played {Player.Progress}0% of the game\n");
+            Typewriter_Method.SlowType("Thank you for playing Firefighter 1\n");
         }
     }
 }

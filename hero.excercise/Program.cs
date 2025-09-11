@@ -1,4 +1,6 @@
 ﻿
+using FireFIghter_1;
+using FireFIghter_1.Menu_s;
 using System;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
@@ -12,18 +14,17 @@ namespace FireFighter_1
         public static void Main(string[] args)
         {
 
-            
-            //Titel screen
 
-            Start_Create.Introduction();
-            while (Start_Create.EndGame == false)
+            //Titel screen
+            Introduction.Introduce();
+            while (Introduction.EndGame == false)
             {
                 
-                Start_Create.Create();
+                CreatePlayer.Create();
                 Player user = new Player();
-                Enemy enemy = new Enemy(user);
+                Enemy enemy1 = new Enemy(user, Adventures.randomNumber);
                 
-                MenuOptions.Menu(user, enemy);
+                MenuOptions.Menu(user, enemy1);
 
             }
             

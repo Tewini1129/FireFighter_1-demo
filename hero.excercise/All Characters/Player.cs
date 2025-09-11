@@ -17,6 +17,8 @@ namespace FireFighter_1
         public static int PowerClass;
         public static int MaxHp;
         public static int Hp;
+        public static int Shield;
+        public static int MaxShield;
         public static int MaxEnergyLevel;
         public static int EnergyLevel;
         public static int RegulareDamage;
@@ -30,52 +32,58 @@ namespace FireFighter_1
         public Player()
         {
 
-            Name = Start_Create.name;
+            Name = Introduction.name;
             
              
             
             if (PowerClass == 1)
             {
                 //Stats
+                Progress = 1;
                 PowerClass = 1;
-                MaxHp = 100; 
-                Hp = 100;
+                MaxHp = 120; 
+                Hp = 120;
+                MaxShield = (Player.MaxHp / 2);
+                Shield = (Player.MaxHp / 2);
                 MaxEnergyLevel = 10;
                 EnergyLevel = 10;
-                RegulareDamage = 35;
+                RegulareDamage = 30;
                 Gold = 2;
-                Progress = 1;
-                
 
-                
 
-                
+
+
+
 
             }
 
             else if (PowerClass == 2)
             {
                 //Stats
-                PowerClass = 2;
-                MaxHp = 100;
-                Hp = 100;
-                MaxEnergyLevel = 5;
-                EnergyLevel = 5;
-                RegulareDamage = 25;
-                Gold = 4;
                 Progress = 1;
+                PowerClass = 2;
+                MaxHp = 130;
+                Hp = 130;
+                Shield = (Player.MaxHp / 2);
+                MaxEnergyLevel = 6;
+                EnergyLevel = 6;
+                RegulareDamage = 40;
+                Gold = 4;
+                
                 
             }
             else if (PowerClass == 3)
             {
+                Progress = 1;
                 PowerClass = 3;
-                MaxHp = 100;
-                Hp = 100;
+                MaxHp = 120;
+                Hp = 120;
+                Shield = (Player.MaxHp / 2);
                 MaxEnergyLevel = 10;
                 EnergyLevel = 10;
-                RegulareDamage = 45;
+                RegulareDamage = 50;
                 Gold = 1;
-                Progress = 1;
+                
                 
 
 

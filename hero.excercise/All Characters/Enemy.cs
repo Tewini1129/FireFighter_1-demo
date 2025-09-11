@@ -44,11 +44,11 @@ namespace FireFighter_1
             {
                     Level = Player.Progress;
                     Name = $"Demon Lv.{Player.Progress}";
-                    MaxHp = Player.Progress * Player.MaxHp;
+                    MaxHp = (Player.Progress + 1) * Player.MaxHp;
                     Hp = Player.MaxHp;
                     MaxEnergyLevel = 5;
                     EnergyLevel = 0;
-                    Damage = Player.RegulareDamage;
+                    Damage = Player.RegulareDamage + 1 * Player.Progress;
                     ultimate = Player.RegulareDamage * 3;
             }
             else if(Adventures.randomNumber == 2)
@@ -68,7 +68,7 @@ namespace FireFighter_1
                     Hp = Player.Progress * Player.MaxHp + 100;
                     MaxEnergyLevel = 5;
                     EnergyLevel = 0;
-                    Damage = Player.RegulareDamage * Player.Progress + 30;
+                    Damage = (Player.RegulareDamage + 2) * Player.Progress;
                     ultimate = Player.RegulareDamage * 10;
                 }
         }
