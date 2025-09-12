@@ -32,44 +32,44 @@ namespace FireFighter_1
         {
             if(Adventures.randomNumber == 0)
             {
-                    Name = $"Infernal .{Player.Progress}";
-                    MaxHp = Player.Progress * Player.MaxHp;
-                    Hp = Player.Progress * Player.MaxHp;
+                Name = $"Infernal .{user.Progress}";
+                MaxHp = user.Progress * user.MaxHp;
+                Hp = user.Progress * user.MaxHp;
                     EnergyLevel = 0;
                     MaxEnergyLevel = 5;
-                    Damage = Player.RegulareDamage / 2;
-                    ultimate = Player.RegulareDamage * 2;
+                Damage = user.RegulareDamage / 2;
+                ultimate = user.RegulareDamage * 2;
             }
             else if (Adventures.randomNumber == 1)
             {
-                    Level = Player.Progress;
-                    Name = $"Demon Lv.{Player.Progress}";
-                    MaxHp = (Player.Progress + 1) * Player.MaxHp;
-                    Hp = Player.MaxHp;
+                Level = user.Progress;
+                Name = $"Demon Lv.{user.Progress}";
+                MaxHp = (user.Progress + 1) * user.MaxHp;
+                Hp = user.MaxHp;
                     MaxEnergyLevel = 5;
                     EnergyLevel = 0;
-                    Damage = Player.RegulareDamage + 1 * Player.Progress;
-                    ultimate = Player.RegulareDamage * 3;
+                Damage = user.RegulareDamage + 1 * user.Progress;
+                ultimate = user.RegulareDamage * 3;
             }
             else if(Adventures.randomNumber == 2)
             {
-                    Level = Player.Progress;
-                    if (Player.Progress >= 2)
+                Level = user.Progress;
+                    if (user.Progress >= 2)
                     {
-                        Name = $"White Clad Lv.{Player.Progress}";
+                    Name = $"White Clad Lv.{user.Progress}";
 
 
                     }
                     else
                     {
-                        Name = "Boss:White Clad";
+                    Name = "Boss:White Clad";
                     }
-                    MaxHp = Player.Progress * Player.MaxHp + 100;
-                    Hp = Player.Progress * Player.MaxHp + 100;
+                MaxHp = user.Progress * user.MaxHp + 100;
+                Hp = user.Progress * user.MaxHp + 100;
                     MaxEnergyLevel = 5;
                     EnergyLevel = 0;
-                    Damage = (Player.RegulareDamage + 2) * Player.Progress;
-                    ultimate = Player.RegulareDamage * 10;
+                Damage = (user.RegulareDamage + 2) * user.Progress;
+                ultimate = user.RegulareDamage * 10;
                 }
         }
 

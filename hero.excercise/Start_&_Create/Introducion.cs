@@ -44,7 +44,7 @@ namespace FireFighter_1
             
                 //Continue to create or stop
                 while (Continue == false)
-            {
+                {
                 userChoice = Console.ReadLine();
 
                 if (userChoice == "")

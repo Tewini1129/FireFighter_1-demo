@@ -14,10 +14,11 @@ namespace FireFighter_1
     public class MenuOptions
     {
         //variables
-        public static int creditCard = Player.Gold;
+        public static int creditCard;
 
         public static void Menu(Player user, Enemy enemy)
         {
+
             Console.Clear();
             Console.WriteLine("\n---------------------------\n");
 
@@ -36,7 +37,7 @@ namespace FireFighter_1
 
 
             Introduction.Continue = false;
-            while ((Introduction.Continue == false)&&(Player.Hp > 0))
+            while ((Introduction.Continue == false)&&(user.Hp > 0))
             {
                 string? menuChoice = Console.ReadLine();
 
@@ -77,7 +78,7 @@ namespace FireFighter_1
                         break;
 
                     case "6":
-                        EndScreen.End();
+                        EndScreen.End(user);
                         Introduction.Continue = true;
                         Introduction.EndGame = true;
 

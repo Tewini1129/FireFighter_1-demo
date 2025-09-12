@@ -10,7 +10,7 @@ namespace FireFighter_1
 {
     public class Fight(Player user, Enemy enemy1)
     {
-        public int regulareAttack;
+        //public int user.regulareAttack;
         public int unknown;
         public static bool win = false;
         public static string userChoice = "";
@@ -27,7 +27,7 @@ namespace FireFighter_1
                 Typewriter_Method.SlowType($"You ran into a {enemy1.Name}\n");
                 Typewriter_Method.SlowType("Choose your action\n");
                 Typewriter_Method.SlowType("1. Fight\n");
-                if ((enemy1.Name == $"White Clad Lv.{Player.Progress}")||(enemy1.Name == "Boss:White Clad"))
+                if ((enemy1.Name == $"White Clad Lv.{user.Progress}")||(enemy1.Name == "Boss:White Clad"))
                 {
                     Typewriter_Method.SlowType("You cannot flee from White clad\n");
                 }
@@ -50,7 +50,7 @@ namespace FireFighter_1
 
                     Typewriter_Method.SlowType("\n---------------------------\n", 60);
 
-                    while ((Player.Hp > 0) && (enemy1.Hp > 0))
+                    while ((user.Hp > 0) && (enemy1.Hp > 0))
                     {
                         win = false;
                         PlayerTurn.FightPlayerTurn(userChoice, user, enemy1);
@@ -61,16 +61,16 @@ namespace FireFighter_1
                         
                         
                        
-                        if ((enemy1.Hp <= 0) && (Player.Hp > 0))
+                        if ((enemy1.Hp <= 0) && (user.Hp > 0))
                         {
                             Console.WriteLine("\n---------------------------\n\n");
-                           
+
                             Typewriter_Method.SlowType($"You won against {enemy1.Name}\n");
-                            if ((enemy1.Name == $"White clad{Player.Progress}") || (enemy1.Name == "Boss:White Clad"))
+                            if ((enemy1.Name == $"White clad{user.Progress}") || (enemy1.Name == "Boss:White Clad"))
                             {
-                                
-                                
-                                Player.Gold += 6;
+
+
+                                user.Gold += 6;
                                 Typewriter_Method.SlowType("Reward: +6 gold\n");
                                 Typewriter_Method.SlowType("\n---------------------------\n", 90);
 
@@ -80,14 +80,14 @@ namespace FireFighter_1
                             }
                             else
                             {
-                                Player.Gold += 3;
+                                user.Gold += 3;
                                 Typewriter_Method.SlowType("Reward: +3 gold\n");
 
                                 win = true;
                             }
                               
                         }
-                        else if ((enemy1.Hp > 0) && (Player.Hp <= 0))
+                        else if ((enemy1.Hp > 0) && (user.Hp <= 0))
                         {
                             win = false;
                         }
@@ -109,7 +109,7 @@ namespace FireFighter_1
                 }
                 else if (userChoice == "2")
                 {
-                    if((enemy1.Name == $"White clad{Player.Progress}")|| (enemy1.Name == "Boss:White Clad"))
+                    if((enemy1.Name == $"White clad{user.Progress}")|| (enemy1.Name == "Boss:White Clad"))
                     {
                         Typewriter_Method.SlowType("As you turn around to try and flee, the White clad sends a barrage of missiles in your back killing you instantly\n");
                         Introduction.EndGame = true;

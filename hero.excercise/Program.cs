@@ -17,18 +17,20 @@ namespace FireFighter_1
 
             //Titel screen
             Introduction.Introduce();
+            Player user = new Player();
+
             while (Introduction.EndGame == false)
             {
+                CreatePlayer.Create(user);
                 
-                CreatePlayer.Create();
-                Player user = new Player();
+                
                 Enemy enemy1 = new Enemy(user, Adventures.randomNumber);
                 
                 MenuOptions.Menu(user, enemy1);
 
             }
             
-                EndScreen.End();
+                EndScreen.End(user);
             
 
         }

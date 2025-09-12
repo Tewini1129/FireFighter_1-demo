@@ -15,22 +15,23 @@ namespace FireFIghter_1.Menu_s
             Introduction.Continue = false;
             Console.Clear();
             Console.WriteLine("---------------------------");
-            Typewriter_Method.SlowType($"\n\nUsername:\t\t\t{Player.Name}\n");
-            Typewriter_Method.SlowType($"Generation:\t\t\t{Player.PowerClass}\n");
-            Typewriter_Method.SlowType($"Hp/Max Hp:\t\t\t{Player.Hp}/{Player.MaxHp}\n");
-            Typewriter_Method.SlowType($"Energy level/Max energy level:\t{Player.EnergyLevel}/{Player.MaxEnergyLevel}\n");
-            Typewriter_Method.SlowType($"Damage:\t\t\t\t{Player.RegulareDamage}\n");
-            Typewriter_Method.SlowType($"Gold:\t\t\t\t{Player.Gold}\n");
-            Typewriter_Method.SlowType($"Progress:\t\t\t{Player.Progress}\n");
+            Typewriter_Method.SlowType($"\n\nUsername:\t\t\t{user.Name}\n");
+            Typewriter_Method.SlowType($"Generation:\t\t\t{user.PowerClass}\n");
+            Typewriter_Method.SlowType($"Hp/Max Hp:\t\t\t{user.Hp}/{user.MaxHp}\n");
+            Typewriter_Method.SlowType($"Shield/Max Shield:\t\t{user.Shield}/{user.MaxShield}\n");
+            Typewriter_Method.SlowType($"Energy level/Max energy level:\t{user.EnergyLevel}/{user.MaxEnergyLevel}\n");
+            Typewriter_Method.SlowType($"Damage:\t\t\t\t{user.RegulareDamage}\n");
+            Typewriter_Method.SlowType($"Gold:\t\t\t\t{user.Gold}\n");
+            Typewriter_Method.SlowType($"Progress:\t\t\t{user.Progress}\n");
 
-            if (Player.inventory.Count() == 0)
+            if (user.inventory.Count() == 0)
             {
                 Typewriter_Method.SlowType($"Inventory: Empty\n");
             }
-            else if (Player.inventory.Count() > 0)
+            else if (user.inventory.Count() > 0)
             {
                 Typewriter_Method.SlowType("Inventory:");
-                foreach (string item in Player.inventory)
+                foreach (string item in user.inventory)
                 {
                     Console.Write($" || {item} ||");
                 }

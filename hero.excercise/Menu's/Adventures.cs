@@ -62,15 +62,15 @@ namespace FireFIghter_1
                         
                         
                 } while (randomNumber != 2);
-                if ((Fight.win == true)&&(Player.Progress <2))
+                if ((Fight.win == true)&&(user.Progress <2))
                 {
                     Typewriter_Method.SlowType("You leveled up");
-                    Player.Progress++;
-                    Player.Hp = Player.Hp * Player.Progress;
-                    Player.MaxHp = Player.MaxHp * Player.Progress;
-                    Player.EnergyLevel += Player.Progress;
-                    Player.MaxEnergyLevel += Player.Progress;
-                    Player.RegulareDamage = Player.RegulareDamage * Player.Progress;
+                    user.Progress++;
+                    user.Hp = user.Hp * user.Progress;
+                    user.MaxHp = user.MaxHp * user.Progress;
+                    user.EnergyLevel += user.Progress;
+                    user.MaxEnergyLevel += user.Progress;
+                    user.RegulareDamage = user.RegulareDamage * user.Progress;
                     Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
                     MenuOptions.Menu(user, enemy);
@@ -119,29 +119,29 @@ namespace FireFIghter_1
                         Introduction.Continue = true;
                         Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
-                        if ((Fight.win == true)&&(Player.Progress < 2))
+                        if ((Fight.win == true)&&(user.Progress < 2))
                         {
-                            Typewriter_Method.SlowType("You leveled up");
-                            Player.Progress++;
-                            Player.Hp = Player.Hp * Player.Progress;
-                            Player.MaxHp = Player.MaxHp * Player.Progress;
-                            Player.EnergyLevel += Player.Progress;
-                            Player.MaxEnergyLevel += Player.Progress;
-                            Player.RegulareDamage = Player.RegulareDamage * Player.Progress;
-                            Player.MaxShield = Player.MaxShield * Player.Progress;
-                            Player.Shield = Player.Shield * Player.Progress;
+                    Typewriter_Method.SlowType("You leveled up");
+                    user.Progress++;
+                    user.Hp = user.Hp * user.Progress;
+                    user.MaxHp = user.MaxHp * user.Progress;
+                    user.EnergyLevel += user.Progress;
+                    user.MaxEnergyLevel += user.Progress;
+                    user.RegulareDamage = user.RegulareDamage * user.Progress;
+                    user.MaxShield = user.MaxShield * user.Progress;
+                    user.Shield = user.Shield * user.Progress;
 
 
                     Typewriter_Method.SlowType("\n---------------------------\n", 120);
-                            Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
+                    Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
 
-                            MenuOptions.Menu(user, enemy);
+                    MenuOptions.Menu(user, enemy);
                         }
                         else if(Fight.win == true)
                         {
-                            Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
+                    Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
 
-                            MenuOptions.Menu(user, enemy);
+                    MenuOptions.Menu(user, enemy);
 
                         }
                     }
@@ -195,15 +195,15 @@ namespace FireFIghter_1
                         Introduction.Continue = true;
                         Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
-                        if ((Fight.win == true) && (Player.Progress < 3))
+                        if ((Fight.win == true) && (user.Progress < 3))
                         {
                             Typewriter_Method.SlowType("You leveled up");
-                            Player.Progress++;
-                            Player.Hp = Player.Hp * Player.Progress;
-                            Player.MaxHp = Player.MaxHp * Player.Progress;
-                            Player.EnergyLevel += Player.Progress;
-                            Player.MaxEnergyLevel += Player.Progress;
-                            Player.RegulareDamage = Player.RegulareDamage * Player.Progress;
+                            user.Progress++;
+                            user.Hp = user.Hp * user.Progress;
+                            user.MaxHp = user.MaxHp * user.Progress;
+                            user.EnergyLevel += user.Progress;
+                            user.MaxEnergyLevel += user.Progress;
+                            user.RegulareDamage = user.RegulareDamage * user.Progress;
                             Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
                             MenuOptions.Menu(user, enemy);
@@ -223,12 +223,12 @@ namespace FireFIghter_1
                 if (Fight.win == true)
                 {
                     Typewriter_Method.SlowType("You leveled up");
-                    Player.Progress++;
-                    Player.Hp = Player.Hp * Player.Progress;
-                    Player.MaxHp = Player.MaxHp * Player.Progress;
-                    Player.EnergyLevel += Player.Progress;
-                    Player.MaxEnergyLevel += Player.Progress;
-                    Player.RegulareDamage = Player.RegulareDamage * Player.Progress;
+                    user.Progress++;
+                    user.Hp = user.Hp * user.Progress;
+                    user.MaxHp = user.MaxHp * user.Progress;
+                    user.EnergyLevel += user.Progress;
+                    user.MaxEnergyLevel += user.Progress;
+                    user.RegulareDamage = user.RegulareDamage * user.Progress;
                     Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
                     MenuOptions.Menu(user, enemy);
@@ -276,7 +276,7 @@ namespace FireFIghter_1
                                 Console.Clear();
                                 Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally gathered\n");
                                 Introduction.EndGame = true;
-                                EndScreen.End();
+                                EndScreen.End(user);
 
                             }
                         Introduction.Continue = true;

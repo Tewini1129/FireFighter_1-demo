@@ -9,6 +9,7 @@ namespace FireFIghter_1.Menu_s
 {
     public class StoreMethod
     {
+
         //Store method
         public static void Store(Player user, Enemy enemy)
         {
@@ -36,7 +37,7 @@ namespace FireFIghter_1.Menu_s
 
 
             //Current amount of gold
-            Typewriter_Method.SlowType($"\nYour currently have {Player.Gold} gold coins");
+            Typewriter_Method.SlowType($"\nYour currently have {user.Gold} gold coins");
             Typewriter_Method.SlowType("\n\nEnter the number of the item you wish to purchase or \"Leave\" to go back to menu:\n\n");
             Introduction.Continue = false;
             while (Introduction.Continue == false)
@@ -45,13 +46,13 @@ namespace FireFIghter_1.Menu_s
                 string? wantedItem = Console.ReadLine();
                 if (wantedItem == "1")
                 {
-                    if (Player.Gold >= itemCost[0])
+                    if (user.Gold >= itemCost[0])
                     {
                         //Adding Item to inventory and paying
-                        MenuOptions.creditCard = Player.Gold;
-                        Player.inventory.Add("Redbull");
-                        MenuOptions.creditCard = Player.Gold - 2;
-                        Player.Gold = MenuOptions.creditCard;
+                        MenuOptions.creditCard = user.Gold;
+                        user.inventory.Add("Redbull");
+                        MenuOptions.creditCard = user.Gold - 2;
+                        user.Gold = MenuOptions.creditCard;
 
                         Console.WriteLine("\n---------------------------\n");
                         Typewriter_Method.SlowType("-2 Gold \n+1 Redbull\n");
@@ -69,12 +70,12 @@ namespace FireFIghter_1.Menu_s
                 }
                 else if (wantedItem == "2")
                 {
-                    if (Player.Gold >= itemCost[1])
+                    if (user.Gold >= itemCost[1])
                     {
                         //Adding Item to inventory and paying
-                        Player.inventory.Add("Healing potion");
-                        MenuOptions.creditCard = Player.Gold - 2;
-                        Player.Gold = MenuOptions.creditCard;
+                        user.inventory.Add("Healing potion");
+                        MenuOptions.creditCard = user.Gold - 2;
+                        user.Gold = MenuOptions.creditCard;
 
                         Console.WriteLine("\n---------------------------\n");
                         Typewriter_Method.SlowType("-2 Gold \n+1 Healing Potion\n");

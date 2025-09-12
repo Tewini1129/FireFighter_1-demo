@@ -29,9 +29,9 @@ namespace FireFIghter_1.Menu_s
             Typewriter_Method.SlowType("Your Hp, Shield and energy level is fully restored\n");
             Typewriter_Method.SlowType("\n---------------------------\n", 80);
 
-            Player.Hp = Player.MaxHp;
-            Player.Shield = Player.MaxShield;
-            Player.EnergyLevel = Player.MaxEnergyLevel;
+            user.Hp = user.MaxHp;
+            user.Shield = user.MaxShield;
+            user.EnergyLevel = user.MaxEnergyLevel;
             MenuOptions.Menu(user, enemy);
 
         }

@@ -12,8 +12,9 @@ namespace FireFIghter_1.Menu_s
         public static void Train(Player user, Enemy enemy)
         {
             Console.Clear();
-            Player.RegulareDamage += 5;
-            Player.Shield += 2;
+            user.RegulareDamage += 2;
+            user.MaxShield += 5;
+            user.Shield += 5;
             Typewriter_Method.SlowType("\nYou go to the gym and practice your skills\n");
             Typewriter_Method.SlowType("\n+2 Shield\n");
             Typewriter_Method.SlowType("\n+5 Damage\n");

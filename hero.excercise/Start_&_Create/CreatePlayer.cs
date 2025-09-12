@@ -1,6 +1,7 @@
 ﻿using FireFighter_1;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace FireFIghter_1
 {
     internal class CreatePlayer
     {
-        public static void Create()
+        public static void Create(Player user)
         {
             //Name - choosing name
             Typewriter_Method.SlowType("Captain - \"First off, we are gonna need a name!\"\nCaptain - \"Who are you?\"\n");
@@ -25,7 +26,7 @@ namespace FireFIghter_1
             }
             Console.Clear();
             Console.WriteLine("---------------------------");
-            Player.Name = Introduction.name;
+            user.Name = Introduction.name;
             Typewriter_Method.SlowType($"\nCaptain - \"{Introduction.name} huh, Feels familiar, i might have heard of you...\"\nCaptain - \"Anyways Nice to meet you {Introduction.name}!\"");
 
 
@@ -72,24 +73,54 @@ namespace FireFIghter_1
                                 {
 
                                     Introduction.powerClass = 1;
-                                    Player.PowerClass = 1;
-                                    Typewriter_Method.SlowType($"\n{Player.Name} got {Player.PowerClass}\n");
-                                    Typewriter_Method.SlowType("First generation, great! we needed just that!\n");
+                                    user.PowerClass = 1;
+                                    user.Progress = 1;
+                                    user.PowerClass = 1;
+                                    user.MaxHp = 120;
+                                    user.Hp = 120;
+                                    user.MaxShield = user.MaxHp / 2;
+                                    user.Shield = user.MaxHp / 2;
+                                    user.MaxEnergyLevel = 10;
+                                    user.EnergyLevel = 10;
+                                    user.RegulareDamage = 30;
+                                    user.Gold = 2;
+                                    Typewriter_Method.SlowType($"\n{user.Name} got {user.PowerClass}\n");
+                                    Typewriter_Method.SlowType("First generation, great! We needed just that!\n");
                                     Typewriter_Method.SlowType("\n---------------------------\n", 60);
                                 }
                                 else if ((Introduction.randomNumber > 4) || (Introduction.randomNumber <= 8))
                                 {
                                     Introduction.powerClass = 2;
-                                    Player.PowerClass = 2;
+                                    user.PowerClass = 2;
+                                    user.Progress = 1;
+                                    user.PowerClass = 2;
+                                    user.MaxHp = 130;
+                                    user.Hp = 130;
+                                    user.MaxShield = user.MaxHp / 2;
+                                    user.Shield = user.MaxHp / 2;
+                                    user.MaxEnergyLevel = 6;
+                                    user.EnergyLevel = 6;
+                                    user.RegulareDamage = 40;
+                                    user.Gold = 4;
                                     Typewriter_Method.SlowType($"\n{Introduction.name} got {Introduction.powerClass}\n");
-                                    Typewriter_Method.SlowType("Second generation, that's perfect, very useful in the right hands!\n");
+                                    Typewriter_Method.SlowType("Second generation, that's perfect! Very useful in the right hands!\n");
                                     Typewriter_Method.SlowType("\n---------------------------\n", 60);
                                 }
                                 else if (Introduction.randomNumber >= 9)
                                 {
                                     Introduction.powerClass = 3;
-                                    Player.PowerClass = 3;
-                                    Typewriter_Method.SlowType($"\n{Player.Name} got {Player.PowerClass}\n");
+                                    user.PowerClass = 3;
+                                    user.Progress = 1;
+                                    user.PowerClass = 3;
+                                    user.MaxHp = 120;
+                                    user.Hp = 120;
+                                    user.MaxShield = user.MaxHp / 2;
+                                    user.Shield = user.MaxHp / 2;
+                                    user.MaxEnergyLevel = 10;
+                                    user.EnergyLevel = 10;
+                                    user.RegulareDamage = 50;
+                                    user.Gold = 1;
+                                    Typewriter_Method.SlowType($"\n{user.Name} got {user.PowerClass}\n");
                                     Typewriter_Method.SlowType("Oh wow, that's incredible, not many of those around!\n");
                                     Typewriter_Method.SlowType("\n---------------------------\n", 60);
                                 }
@@ -98,8 +129,8 @@ namespace FireFIghter_1
                             else if (powerClassInput == "2")
                             {
                                 Introduction.powerClass = 2;
-                                Player.PowerClass = 2;
-                                Typewriter_Method.SlowType($"\n{Player.Name} is now {Player.PowerClass}\n");
+                                user.PowerClass = 2;
+                                Typewriter_Method.SlowType($"\n{user.Name} is now {user.PowerClass}\n");
                                 Typewriter_Method.SlowType("Second generation! That's perfect, very useful in the right hands!\n");
                                 Typewriter_Method.SlowType("\n---------------------------\n", 60);
 
@@ -107,8 +138,18 @@ namespace FireFIghter_1
                             else if (powerClassInput == "1")
                             {
                                 Introduction.powerClass = 1;
-                                Player.PowerClass = 1;
-                                Typewriter_Method.SlowType($"\n{Player.Name} is now {Player.PowerClass}\n");
+                                user.PowerClass = 1;
+                                user.Progress = 1;
+                                user.PowerClass = 1;
+                                user.MaxHp = 120;
+                                user.Hp = 120;
+                                user.MaxShield = user.MaxHp / 2;
+                                user.Shield = user.MaxHp / 2;
+                                user.MaxEnergyLevel = 10;
+                                user.EnergyLevel = 10;
+                                user.RegulareDamage = 30;
+                                user.Gold = 2;
+                                Typewriter_Method.SlowType($"\n{user.Name} is now {user.PowerClass}\n");
                                 Typewriter_Method.SlowType("First generation, great! We needed just that!\n");
                                 Typewriter_Method.SlowType("\n---------------------------\n", 60);
 
