@@ -1,5 +1,6 @@
 ﻿using FireFighter_1;
 using FireFIghter_1;
+using FireFIghter_1.Menu_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,29 +31,26 @@ namespace FireFighter_1
         {
 
             //Title & Story
-            
-            
-                Console.WriteLine("\tWelcome to Firefighter 1\n");
+            string Prompt = ("\tWelcome to Firefighter 1\n\n \"The world is plagued by a mystical force making random people, at random times, go up in flames.\"\n\"These are Infernals\"\n\"As their body burns they do not die. They do not collapse. But instead they destroy.\"\n\"As they continue do burn so does everything around them.\"\n\"These random combustions spread fear and chaos everywhere. No place is safe\"\n\n\"However, in this world of chaos people also recieve random powers.\"\n\"Powers of different kinds but all connected to fire.\"\n\"One group of people have made it their purpose in life to use their powers to fight these infernals.\"\n\"They are the Firefighters\"\nIn this game you will be playing as someone who has just completed their basic training as a firefighter\nFight through the monsters and discover the clues to understand what really is behind these spontaneous Combustions\n\n");
 
-            Typewriter_Method.SlowType("\n \"The world is plagued by a mystical force making random people, at random times, go up in flames.\"\n\"These are Infernals\"\n\"As their body burns they do not die. They do not collapse. But instead they destroy.\"\n\"As they continue do burn so does everything around them.\"\n\"These random combustions spread fear and chaos everywhere. No place is safe\"\n\n\"However, in this world of chaos people also recieve random powers.\"\n\"Powers of different kinds but all connected to fire.\"\n\"One group of people have made it their purpose in life to use their powers to fight these infernals.\"\n\"They are the Firefighters\"\nIn this game you will be playing as someone who has just completed their basic training as a firefighter\n");
-            
-
-            //How to win
-            Typewriter_Method.SlowType("Fight through the monsters and discover the clues to understand what really is behind these spontaneous Combustions\n\nPress \"Enter\" to start creating your FireFighter!\nEnter \"Stop\" if you already wish to end the game\n");
-            
 
             
+            string[] Options = { "Create your Character", "Quit" };
+
+            FunMenu StartGame = new FunMenu(Prompt, Options);
+            StartGame.Run();
+
                 //Continue to create or stop
                 while (Continue == false)
                 {
-                userChoice = Console.ReadLine();
+                
 
-                if (userChoice == "")
+                if (StartGame.SelectedIndex == 0)
                 {
                     Continue = true;
 
                 }
-                else if (userChoice!.ToLower() == "stop")
+                else if (StartGame.SelectedIndex == 1)
                 {
                     Continue = true;
                     EndGame = true;
@@ -61,7 +59,7 @@ namespace FireFighter_1
                 else
                 {
 
-                    Typewriter_Method.SlowType($"{userChoice} is not a valid answer, try again\n");
+                    Typewriter_Method.SlowType($"{StartGame.SelectedIndex} is not a valid answer, try again\n");
                 }
             }
             Console.Clear();

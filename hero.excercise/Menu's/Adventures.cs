@@ -19,12 +19,11 @@ namespace FireFIghter_1
             Console.Clear();
             Console.WriteLine("\n---------------------------\n\n");
 
-            Typewriter_Method.SlowType("\tChoose your adventure:\n\n");
-            Typewriter_Method.SlowType("\n\t1. Burning building (Level 1 required)\n");
-            Typewriter_Method.SlowType("\t2. Research (Level 2 required)\n");
-            Typewriter_Method.SlowType("\t3. The Nether (Level 3 required)\n");
-            Typewriter_Method.SlowType("\t4. The White clad attack (Level 4 required)\n");
-            Typewriter_Method.SlowType("\n\nEnter the number of the option you wish to choose:\n");
+            Typewriter_Method.SlowType("Choose your adventure:\n\n");
+            Typewriter_Method.SlowType("\n\tBurning building (Level 1 required)\n");
+            Typewriter_Method.SlowType("\tResearch (Level 2 required)\n");
+            Typewriter_Method.SlowType("\tThe Nether (Level 3 required)\n");
+            Typewriter_Method.SlowType("\tThe White clad attack (Level 4 required)\n");
         }
 
         //First Adventure

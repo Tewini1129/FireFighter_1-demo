@@ -22,7 +22,7 @@ namespace FireFighter_1
             if (user.PowerClass == 1)
             {
 
-                Typewriter_Method.SlowType($"{user.Name} shoots small balls into the enemy\n");
+                Typewriter_Method.SlowType($"{user.Name} shoots small balls of fire into the enemy\n");
                 Typewriter_Method.SlowType("\n---------------------------\n", 50);
             }
             else if (user.PowerClass == 2)

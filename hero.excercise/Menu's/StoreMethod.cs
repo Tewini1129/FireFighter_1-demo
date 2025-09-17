@@ -38,13 +38,15 @@ namespace FireFIghter_1.Menu_s
 
             //Current amount of gold
             Typewriter_Method.SlowType($"\nYour currently have {user.Gold} gold coins");
-            Typewriter_Method.SlowType("\n\nEnter the number of the item you wish to purchase or \"Leave\" to go back to menu:\n\n");
             Introduction.Continue = false;
-            while (Introduction.Continue == false)
-            {
+            
+                //Menu
+                string Prompt = $"\n---------------------------\n\nStore manager - \"Welcome to store\"\n\nStore Manager - \"Here is a list of our current items in Stock\"\n\n\t1.Redbull 500ml - {itemCost[0]} gold\t2.Healing Potion 250ml - {itemCost[1]} gold\n\nYour currently have {user.Gold} gold coins";
+                string[] StoreItems = { "Redbull 500ml", "Healing Potion 250ml", "Leave Store" };
+                FunMenu StoreMenu = new FunMenu(Prompt, StoreItems);
+                StoreMenu.Run();
 
-                string? wantedItem = Console.ReadLine();
-                if (wantedItem == "1")
+                if (StoreMenu.SelectedIndex == 0)
                 {
                     if (user.Gold >= itemCost[0])
                     {
@@ -58,7 +60,6 @@ namespace FireFIghter_1.Menu_s
                         Typewriter_Method.SlowType("-2 Gold \n+1 Redbull\n");
                         Typewriter_Method.SlowType("\n---------------------------\n", 50);
 
-                        Introduction.Continue = true;
                         StoreMethod.Store(user, enemy);
                     }
                     else
@@ -68,7 +69,7 @@ namespace FireFIghter_1.Menu_s
 
                     }
                 }
-                else if (wantedItem == "2")
+                else if (StoreMenu.SelectedIndex == 1)
                 {
                     if (user.Gold >= itemCost[1])
                     {
@@ -81,7 +82,6 @@ namespace FireFIghter_1.Menu_s
                         Typewriter_Method.SlowType("-2 Gold \n+1 Healing Potion\n");
                         Typewriter_Method.SlowType("\n---------------------------\n", 50);
 
-                        Introduction.Continue = true;
                         StoreMethod.Store(user, enemy);
                     }
                     else
@@ -90,19 +90,14 @@ namespace FireFIghter_1.Menu_s
                         Typewriter_Method.SlowType("\nEnter \"Leave\" to go back to menu\n\n");
                     }
                 }
-                else if (wantedItem!.ToLower() == "leave")
+                else if (StoreMenu.SelectedIndex == 2)
                 {
 
                     MenuOptions.Menu(user, enemy);
-                    Introduction.Continue = true;
                 }
-                else
-                {
-                    Typewriter_Method.SlowType("\nNot a valid input\nTry something else:\n\n");
+                
 
-                }
-
-            }
+            
 
         }
     }

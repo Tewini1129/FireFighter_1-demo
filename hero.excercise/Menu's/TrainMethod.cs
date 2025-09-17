@@ -16,8 +16,8 @@ namespace FireFIghter_1.Menu_s
             user.MaxShield += 5;
             user.Shield += 5;
             Typewriter_Method.SlowType("\nYou go to the gym and practice your skills\n");
-            Typewriter_Method.SlowType("\n+2 Shield\n");
-            Typewriter_Method.SlowType("\n+5 Damage\n");
+            Typewriter_Method.SlowType("\n+5 Shield\n");
+            Typewriter_Method.SlowType("\n+2 Damage\n");
             Typewriter_Method.SlowType("\n---------------------\n", 90);
             MenuOptions.Menu(user, enemy);
 

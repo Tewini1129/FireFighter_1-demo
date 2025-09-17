@@ -1,4 +1,5 @@
 ﻿using FireFighter_1;
+using FireFIghter_1.Menu_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,41 +21,51 @@ namespace FireFIghter_1
             Typewriter_Method.SlowType($"\t\t{user.EnergyLevel}/{user.MaxEnergyLevel}\n");
             Typewriter_Method.SlowType($"\n\t{enemy.Name} current stats \n\t\t{enemy.Hp}/{enemy.MaxHp}\n");
             Typewriter_Method.SlowType($"\t\t{enemy.EnergyLevel}/{enemy.MaxEnergyLevel}\n");
-            Typewriter_Method.SlowType("\n\n\tChose your next actions\n");
-            Typewriter_Method.SlowType("\n\t1.Use \"Heal\"\n");
-            Typewriter_Method.SlowType("\t2.Use \"Redbull\"\n");
-            Typewriter_Method.SlowType("\t3.Use \"Parry to gain Energy\"\n");
-            Typewriter_Method.SlowType("\t4.Use \"Regular Attack\"\n");
-
+            Typewriter_Method.SlowType("\n\n    Chose your next actions\n\n");
+           
+            string Prompt = $"\n---------------------------\n\n\t{user.Name} current stats \n\t\t{user.Hp}/{user.MaxHp}\n\t\t{user.Shield}/{user.MaxShield}\n\t\t{user.EnergyLevel}/{user.MaxEnergyLevel}\n\n\t{enemy.Name} current stats \n\t\t{enemy.Hp}/{enemy.MaxHp}\n\t\t{enemy.EnergyLevel}/{enemy.MaxEnergyLevel}\n\n\n  Chose your next actions\n";
+            string[] Options = { "Use \"Heal\"", "Use \"Redbull\"", "Use \"Parry to gain Energy\"", "Use \"Regular Attack\"", "", "", "" };
             //Skill 1
             if (user.Progress != 0)
             {
-                Typewriter_Method.SlowType("\t5.Use \"Skill 1\"(-3 energy)\n");
+                Typewriter_Method.SlowType("\tUse \"Skill 1\"(-3 energy)\n");
+                Options[4] = "Use \"Skill 1\"(-3 energy)";
             }
 
 
             //Skill 2
             if (user.Progress >= 2)
             {
-                Typewriter_Method.SlowType("\t6.Use \"Skill 2\" (-5 energy)\n");
+                Typewriter_Method.SlowType("\tUse \"Skill 2\" (-5 energy)\n");
+                Options[5] = "Use \"Skill 2\" (-5 energy)";
             }
 
 
             //SKill 3
             if (user.Progress >= 3)
             {
-                Typewriter_Method.SlowType("\t7.Use \"Skill 3\" (-7 energy)\n");
+                Typewriter_Method.SlowType("\tUse \"Skill 3\" (-7 energy)\n");
+                Options[6] = "7.Use \"Skill 3\" (-7 energy)";
             }
+
+
+            
+
+
 
             Introduction.Continue = false;
             while (Introduction.Continue == false)
             {
-                Fight.userChoice = Console.ReadLine()!;
+
                 Console.WriteLine("\n---------------------------\n\n");
 
-                switch (Fight.userChoice)
+                //Menu
+                FunMenu FightOptions = new FunMenu(Prompt, Options);
+                FightOptions.Run();
+
+                switch (FightOptions.SelectedIndex)
                 {
-                    case "1":
+                    case 0:
                         if (user.inventory.Contains("Healing potion"))
                         {
 
@@ -76,7 +87,7 @@ namespace FireFIghter_1
                         }
                         break;
 
-                    case "2":
+                    case 1:
                         if (user.inventory.Contains("Redbull"))
                         {
 
@@ -100,7 +111,7 @@ namespace FireFIghter_1
 
                         break;
 
-                    case "3":
+                    case 2:
                         Typewriter_Method.SlowType($"\n\n{user.Name} prepares to parry {enemy.Name}'s attack\n");
                         user.EnergyLevel++;
                         Typewriter_Method.SlowType($"{user.Name} gains +1 Energy\n{user.Name}'s Energy level is now {user.EnergyLevel}\n\n");
@@ -108,13 +119,13 @@ namespace FireFIghter_1
                         Typewriter_Method.SlowType("\n---------------------------\n", 90);
                         break;
 
-                    case "4":
+                    case 3:
                         PlayerSkills.RegulareAttack(user);
                         enemy.Hp -= user.RegulareDamage;
                         Introduction.Continue = true;
                         break;
 
-                    case "5":
+                    case 4:
                         if (user.EnergyLevel >= 3)
                         {
                             PlayerSkills.Skill1(user);
@@ -132,7 +143,7 @@ namespace FireFIghter_1
                         }
                         break;
 
-                    case "6":
+                    case 5:
                         if ((user.Progress >= 2) && (user.EnergyLevel >= 5))
                         {
                             PlayerSkills.Skill2(user);
@@ -143,6 +154,8 @@ namespace FireFIghter_1
                         else if (user.Progress < 2)
                         {
                             Console.WriteLine("*Level to low*\n");
+                            Typewriter_Method.SlowType("\n---------------------------\n", 90);
+
                         }
                         else
                         {
@@ -153,7 +166,7 @@ namespace FireFIghter_1
                         }
                         break;
 
-                    case "7":
+                    case 6:
                         if ((user.Progress >= 3) && (user.EnergyLevel >= 7))
                         {
                             PlayerSkills.Skill3(user);
@@ -176,7 +189,7 @@ namespace FireFIghter_1
                         break;
 
                     default:
-                        Typewriter_Method.SlowType($"{Fight.userChoice} is not a valid option, try Something else\n");
+                        Typewriter_Method.SlowType($"{FightOptions.SelectedIndex} is not a valid option, try Something else\n");
                         Typewriter_Method.SlowType("\n---------------------------\n", 90);
                         break;
                 }

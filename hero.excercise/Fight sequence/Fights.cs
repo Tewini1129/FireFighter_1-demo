@@ -1,5 +1,6 @@
 ﻿using FireFighter_1;
 using FireFIghter_1;
+using FireFIghter_1.Menu_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,23 +25,31 @@ namespace FireFighter_1
             while (Introduction.Continue == false)
             {
                 Console.Clear();
+                
                 Typewriter_Method.SlowType($"You ran into a {enemy1.Name}\n");
                 Typewriter_Method.SlowType("Choose your action\n");
-                Typewriter_Method.SlowType("1. Fight\n");
+                Typewriter_Method.SlowType("\tFight\n");
+                string[] Options = { "Fight", "" };
+                string Prompt = $"You ran into a {enemy1.Name}\nChoose your action";
                 if ((enemy1.Name == $"White Clad Lv.{user.Progress}")||(enemy1.Name == "Boss:White Clad"))
                 {
-                    Typewriter_Method.SlowType("You cannot flee from White clad\n");
+                    Typewriter_Method.SlowType("\tYou cannot flee from White clad\n");
+                    Options[1] = "You cannot flee from White clad";
+
                 }
                 else
                 {
-                    Typewriter_Method.SlowType("2. Flee\n");
+                    Typewriter_Method.SlowType("\tFlee\n");
+                    Options[1] = "Flee";
                 }
+                FunMenu FightOrFlight = new FunMenu(Prompt, Options);
+                FightOrFlight.Run();
+
                     
 
                 
             
-                userChoice = Console.ReadLine()!;
-                if (userChoice == "1")
+                if (FightOrFlight.SelectedIndex == 0)
                 {
                     Console.WriteLine("\n---------------------------\n");
 
@@ -107,7 +116,7 @@ namespace FireFighter_1
 
 
                 }
-                else if (userChoice == "2")
+                else if (FightOrFlight.SelectedIndex == 1)
                 {
                     if((enemy1.Name == $"White clad{user.Progress}")|| (enemy1.Name == "Boss:White Clad"))
                     {

@@ -14,21 +14,20 @@ namespace FireFIghter_1.Menu_s
         {
 
 
-            Introduction.Continue = false;
-            while (Introduction.Continue == false)
-            {
-                string? userChoice = "";
+            
                 Adventures.AdventureMenu();
 
-                if ((userChoice != "1") || (userChoice != "2") || (userChoice != "3") || (userChoice != "4"))
-                {
-                    Introduction.Continue = true;
+                string Prompt = "---------------------------\n\n\nChoose your adventure:\n\n\n";
+                string[] AdventureOptions = { "\tBurning building (Level 1 required)", "\tResearch (Level 2 required)", "\tThe Nether (Level 3 required)", "\tThe White clad attack (Level 4 required)" };
+                FunMenu AdventuresChoice = new FunMenu(Prompt,AdventureOptions);
+            AdventuresChoice.Run();
 
-                    userChoice = Console.ReadLine();
 
-                    switch (userChoice)
+                
+
+                    switch (AdventuresChoice.SelectedIndex)
                     {
-                        case "1":
+                        case 0:
                             if (user.Progress >= 1)
                             {
                                 Adventures.TrialBurningBuilding(user, enemy);
@@ -47,7 +46,7 @@ namespace FireFIghter_1.Menu_s
                             }
                             break;
 
-                        case "2":
+                        case 1:
                             if (user.Progress >= 2)
                             {
                                 Adventures.Research(user, enemy);
@@ -77,7 +76,7 @@ namespace FireFIghter_1.Menu_s
                             }
                             break;
 
-                        case "3":
+                        case 2:
                             if (user.Progress >= 3)
                             {
                                 Adventures.TheNether(user, enemy);
@@ -105,7 +104,7 @@ namespace FireFIghter_1.Menu_s
 
                             break;
 
-                        case "4":
+                        case 3:
                             if (user.Progress >= 4)
                             {
                                 Adventures.WhiteCladAttack(user, enemy);
@@ -133,23 +132,15 @@ namespace FireFIghter_1.Menu_s
                             break;
 
                         default:
-                            Typewriter_Method.SlowType($"\n{userChoice} is not a valid option\n");
+                            Typewriter_Method.SlowType($"\n{AdventuresChoice.SelectedIndex} is not a valid option\n");
                             Typewriter_Method.SlowType("Press any key to continue and try a different adventure\n");
                             Console.ReadKey();
                             Introduction.Continue = false;
                             break;
 
                     }
-                }
-                else
-                {
-                    Typewriter_Method.SlowType($"\n{userChoice} is not a option\n");
-                    Typewriter_Method.SlowType("Press any key to continue and try a different adventure\n");
-                    Console.ReadKey();
-                    Introduction.Continue = false;
-
-                }
-            }
+                
+            
         }
     }
 }
