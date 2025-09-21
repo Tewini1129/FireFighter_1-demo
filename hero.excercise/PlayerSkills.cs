@@ -9,15 +9,10 @@ using System.Threading.Tasks;
 namespace FireFighter_1
 {
 
-    public class PlayerSkills(Player user)
+    public class PlayerSkills
     {
         
-
-
-
-
-        //First generation skills
-        public static void RegulareAttack(Player user)
+        public static void RegularAttack(Player user)
         {
             if (user.PowerClass == 1)
             {
@@ -95,7 +90,7 @@ namespace FireFighter_1
             if (user.PowerClass == 1)
             {
 
-                Typewriter_Method.SlowType($"{user.Name} fires a missil of increadible power into the chest of the enemy \n");
+                Typewriter_Method.SlowType($"{user.Name} fires a missile of incredible power into the chest of the enemy \n");
                 Typewriter_Method.SlowType("\n---------------------------\n", 50);
             }
             else if (user.PowerClass == 2)

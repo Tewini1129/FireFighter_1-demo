@@ -17,15 +17,13 @@ namespace FireFighter_1
         
         //name, level, hp, damage,
         public int Level;
-        public string Name;
+        public string Name = "";
         public int MaxHp;
         public int Hp;
         public int MaxEnergyLevel;
         public int EnergyLevel;
         public int Damage;
         public int ultimate;
-
-
 
 
         public Enemy(Player user, int randomNumber)
@@ -72,16 +70,5 @@ namespace FireFighter_1
                 ultimate = user.RegulareDamage * 10;
                 }
         }
-
-
-
-        
-
     }
-    
-    
-
-
-
-        
 }

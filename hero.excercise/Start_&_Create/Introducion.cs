@@ -30,7 +30,6 @@ namespace FireFighter_1
         public static void Introduce()
         {
 
-            //Title & Story
             string Prompt = ("\tWelcome to Firefighter 1\n\n \"The world is plagued by a mystical force making random people, at random times, go up in flames.\"\n\"These are Infernals\"\n\"As their body burns they do not die. They do not collapse. But instead they destroy.\"\n\"As they continue do burn so does everything around them.\"\n\"These random combustions spread fear and chaos everywhere. No place is safe\"\n\n\"However, in this world of chaos people also recieve random powers.\"\n\"Powers of different kinds but all connected to fire.\"\n\"One group of people have made it their purpose in life to use their powers to fight these infernals.\"\n\"They are the Firefighters\"\nIn this game you will be playing as someone who has just completed their basic training as a firefighter\nFight through the monsters and discover the clues to understand what really is behind these spontaneous Combustions\n\n");
 
 

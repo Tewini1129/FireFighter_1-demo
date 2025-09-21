@@ -14,12 +14,9 @@ namespace FireFIghter_1.Menu_s
         {
             Introduction.Continue = false;
             Console.WriteLine("\n---------------------------\n");
-            Typewriter_Method.SlowType("Zz Zzz\n\n");
-            Typewriter_Method.SlowType("Zzz Zz Zzz\n\n\n");
-            Typewriter_Method.SlowType("Zz Zzz\n\n");
-            Typewriter_Method.SlowType("Zzz Zz Zzz\n\n\n");
-            Typewriter_Method.SlowType("Zz Zzz\n\n");
-            Typewriter_Method.SlowType("Zzz Zz Zzz\n\n\n");
+            Typewriter_Method.SlowType("Zz Zzz\n\nZzz Zz Zzz\n\n\n");
+            Typewriter_Method.SlowType("Zz Zzz\n\nZzz Zz Zzz\n\n\n");
+            Typewriter_Method.SlowType("Zz Zzz\n\nZzz Zz Zzz\n\n\n");
             Typewriter_Method.SlowType("Press \"Enter\" to wake up and continue\n");
 
             Console.ReadKey();

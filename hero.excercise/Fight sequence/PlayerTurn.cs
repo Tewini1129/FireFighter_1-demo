@@ -49,10 +49,6 @@ namespace FireFIghter_1
             }
 
 
-            
-
-
-
             Introduction.Continue = false;
             while (Introduction.Continue == false)
             {
@@ -120,7 +116,7 @@ namespace FireFIghter_1
                         break;
 
                     case 3:
-                        PlayerSkills.RegulareAttack(user);
+                        PlayerSkills.RegularAttack(user);
                         enemy.Hp -= user.RegulareDamage;
                         Introduction.Continue = true;
                         break;

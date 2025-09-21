@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FireFighter_1
 {
-    public class Fight(Player user, Enemy enemy1)
+    public class Fight
     {
         //public int user.regulareAttack;
         public int unknown;
@@ -45,10 +45,7 @@ namespace FireFighter_1
                 FunMenu FightOrFlight = new FunMenu(Prompt, Options);
                 FightOrFlight.Run();
 
-                    
 
-                
-            
                 if (FightOrFlight.SelectedIndex == 0)
                 {
                     Console.WriteLine("\n---------------------------\n");
@@ -65,11 +62,7 @@ namespace FireFighter_1
                         PlayerTurn.FightPlayerTurn(userChoice, user, enemy1);
                         EnemyTurn.FightEnemyturn(userChoice, user, enemy1);
 
-                       
 
-                        
-                        
-                       
                         if ((enemy1.Hp <= 0) && (user.Hp > 0))
                         {
                             Console.WriteLine("\n---------------------------\n\n");
@@ -109,12 +102,6 @@ namespace FireFighter_1
                         Typewriter_Method.SlowType("Game over!\n");
                         
                     }
-
-
-
-
-
-
                 }
                 else if (FightOrFlight.SelectedIndex == 1)
                 {
@@ -135,23 +122,14 @@ namespace FireFighter_1
                         Typewriter_Method.SlowType("\n---------------------------\n", 60);
 
                     }
-
                 }
                 else
                 {
                     Typewriter_Method.SlowType($"{userChoice} is not a valid option \n");
                 }
             }
-            
         }
-
-        
-
     }
-
-       
-
-
 }
 
 

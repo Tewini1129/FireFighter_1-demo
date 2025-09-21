@@ -27,8 +27,6 @@ namespace FireFighter_1
             Introduction.Continue = false;
             while ((Introduction.Continue == false)&&(user.Hp > 0))
             {
-                
-
 
                 switch (MainMenu.SelectedIndex+1)
                 {
@@ -80,23 +78,6 @@ namespace FireFighter_1
                         break;
                 }
             }
-
         }
-
-
-       
-
-        
-       
-
-
-
-        
-
-
-
-       
-        
-        
     }
 }

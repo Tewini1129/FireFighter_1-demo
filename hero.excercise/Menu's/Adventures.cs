@@ -1,4 +1,5 @@
 ﻿using FireFighter_1;
+using FireFIghter_1.Menu_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireFIghter_1
+namespace FireFighter_1
 {
     internal class Adventures
-
     {
         public static Random random = new Random();
         public static int randomNumber;
@@ -47,10 +47,8 @@ namespace FireFIghter_1
 
                 
                 
-
                 do
                 {
-
                      randomNumber = random.Next(0, 3);
                      Enemy enemy1 = new Enemy(user, randomNumber);
                         
@@ -64,12 +62,7 @@ namespace FireFIghter_1
                 if ((Fight.win == true)&&(user.Progress <2))
                 {
                     Typewriter_Method.SlowType("You leveled up");
-                    user.Progress++;
-                    user.Hp = user.Hp * user.Progress;
-                    user.MaxHp = user.MaxHp * user.Progress;
-                    user.EnergyLevel += user.Progress;
-                    user.MaxEnergyLevel += user.Progress;
-                    user.RegulareDamage = user.RegulareDamage * user.Progress;
+                    LevelUpRewards.LevelUp(user);
                     Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
                     MenuOptions.Menu(user, enemy);
@@ -98,10 +91,9 @@ namespace FireFIghter_1
             Typewriter_Method.SlowType("Find the White clad member and kill him.\n");
             Typewriter_Method.SlowType("\n\nPress enter \"Enter\" to continue\n");
             
-                Console.ReadKey();
+            Console.ReadKey();
 
                 
-
                     do
                     {
                         randomNumber = random.Next(0, 3);
@@ -118,17 +110,11 @@ namespace FireFIghter_1
                         Introduction.Continue = true;
                         Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
-                        if ((Fight.win == true)&&(user.Progress < 2))
+                        if ((Fight.win == true)&&(user.Progress < 3))
                         {
                     Typewriter_Method.SlowType("You leveled up");
-                    user.Progress++;
-                    user.Hp = user.Hp * user.Progress;
-                    user.MaxHp = user.MaxHp * user.Progress;
-                    user.EnergyLevel += user.Progress;
-                    user.MaxEnergyLevel += user.Progress;
-                    user.RegulareDamage = user.RegulareDamage * user.Progress;
-                    user.MaxShield = user.MaxShield * user.Progress;
-                    user.Shield = user.Shield * user.Progress;
+                    LevelUpRewards.LevelUp(user);
+
 
 
                     Typewriter_Method.SlowType("\n---------------------------\n", 120);
@@ -144,11 +130,7 @@ namespace FireFIghter_1
 
                         }
                     }
-                        Introduction.Continue = true;
-                    
-                
-
-            
+            Introduction.Continue = true;
 
         }
 
@@ -172,8 +154,6 @@ namespace FireFIghter_1
                 Console.ReadKey();
 
                 
-                
-
                     do
                     {
                     
@@ -183,42 +163,36 @@ namespace FireFIghter_1
                         Console.WriteLine("\n---------------------------\n\n");
                         Fight.EnemyFight(enemy1, user);
 
-                    if (Fight.win == true)
-                    {
-
-
-                        Typewriter_Method.SlowType("\nYou escape before the White clads self destruct sequence explode\n");
-                        Typewriter_Method.SlowType("In the lab you found out that lab created insects are what creates infernal's and demons\n");
-                        Typewriter_Method.SlowType("No one believes you since it sounds crazy, and all the evidence got incinerated int the explosion. \nbut the White clad cant let anybody know...\n");
-
-                        Introduction.Continue = true;
-                        Typewriter_Method.SlowType("\n---------------------------\n", 120);
-
-                        if ((Fight.win == true) && (user.Progress < 3))
+                        if (Fight.win == true)
                         {
-                            Typewriter_Method.SlowType("You leveled up");
-                            user.Progress++;
-                            user.Hp = user.Hp * user.Progress;
-                            user.MaxHp = user.MaxHp * user.Progress;
-                            user.EnergyLevel += user.Progress;
-                            user.MaxEnergyLevel += user.Progress;
-                            user.RegulareDamage = user.RegulareDamage * user.Progress;
+
+
+                            Typewriter_Method.SlowType("\nYou escape before the White clads self destruct sequence explode\n");
+                            Typewriter_Method.SlowType("In the lab you found out that lab created insects are what creates infernal's and demons\n");
+                            Typewriter_Method.SlowType("No one believes you since it sounds crazy, and all the evidence got incinerated int the explosion. \nbut the White clad cant let anybody know...\n");
+
+                            Introduction.Continue = true;
                             Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
-                            MenuOptions.Menu(user, enemy);
+                            if ((Fight.win == true) && (user.Progress < 4))
+                            {
+                                Typewriter_Method.SlowType("You leveled up");
+                                LevelUpRewards.LevelUp(user);
+
+                                Typewriter_Method.SlowType("\n---------------------------\n", 120);
+
+                                MenuOptions.Menu(user, enemy);
+                            }
+                            else if (Fight.win == true)
+                            {
+                                MenuOptions.Menu(user, enemy);
+
+                            }
                         }
-                        else if (Fight.win == true)
-                        {
-                            MenuOptions.Menu(user, enemy);
-
-                        }
-                    }
-
-
                         Introduction.Continue = true;
-
-                        
+   
                     } while (enemies[randomNumber] != "Whiteclad");
+
                 if (Fight.win == true)
                 {
                     Typewriter_Method.SlowType("You leveled up");
@@ -256,35 +230,24 @@ namespace FireFIghter_1
 
             while (Introduction.Continue == false)
             {
-
                 Console.ReadKey();
-
-
-
                 do
                 {
-                        
-                            Console.Clear();
-                            Console.WriteLine("\n---------------------------\n\n");
-                            Typewriter_Method.SlowType($"\nYou found a {enemy.Name}\n");
-                            Fight.EnemyFight(enemy, user);
-                        
-
-                            if (Fight.win == true)
-                            {
-                                Console.Clear();
-                                Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally gathered\n");
-                                Introduction.EndGame = true;
-                                EndScreen.End(user);
-
-                            }
+                    Console.Clear();
+                    Console.WriteLine("\n---------------------------\n\n");
+                    Typewriter_Method.SlowType($"\nYou found a {enemy.Name}\n");
+                    Fight.EnemyFight(enemy, user);
+                    if (Fight.win == true)
+                    {
+                        Console.Clear();
+                        Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally gathered\n");
+                        Introduction.EndGame = true;
+                        EndScreen.End(user);
+                    }
                         Introduction.Continue = true;
 
                 } while (randomNumber != 2);
-                
-
             }
-
         }
     }
 }
