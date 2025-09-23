@@ -24,6 +24,7 @@ namespace FireFighter_1
         public int EnergyLevel;
         public int Damage;
         public int ultimate;
+        public int Reward;
 
 
         public Enemy(Player user, int randomNumber)
@@ -37,6 +38,7 @@ namespace FireFighter_1
                     MaxEnergyLevel = 5;
                 Damage = user.RegulareDamage / 2;
                 ultimate = user.RegulareDamage * 2;
+                Reward = 2;
             }
             else if (Adventures.randomNumber == 1)
             {
@@ -48,6 +50,7 @@ namespace FireFighter_1
                     EnergyLevel = 0;
                 Damage = user.RegulareDamage + 1 * user.Progress;
                 ultimate = user.RegulareDamage * 3;
+                Reward = 3;
             }
             else if(Adventures.randomNumber == 2)
             {
@@ -68,6 +71,7 @@ namespace FireFighter_1
                     EnergyLevel = 0;
                 Damage = (user.RegulareDamage + 2) * user.Progress;
                 ultimate = user.RegulareDamage * 10;
+                Reward = 6;
                 }
         }
     }

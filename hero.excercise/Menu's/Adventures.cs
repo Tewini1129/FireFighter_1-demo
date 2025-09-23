@@ -67,6 +67,10 @@ namespace FireFighter_1
 
                     MenuOptions.Menu(user, enemy);
                 }
+                else if()
+                {
+
+                }
 
             }
 

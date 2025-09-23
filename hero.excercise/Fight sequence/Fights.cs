@@ -72,21 +72,15 @@ namespace FireFighter_1
                             {
 
 
-                                user.Gold += 6;
-                                Typewriter_Method.SlowType("Reward: +6 gold\n");
+                                user.Gold += enemy1.Reward;
+                                Typewriter_Method.SlowType($"Reward: +{enemy1.Reward} gold\n");
                                 Typewriter_Method.SlowType("\n---------------------------\n", 90);
 
 
 
                                 win = true;
                             }
-                            else
-                            {
-                                user.Gold += 3;
-                                Typewriter_Method.SlowType("Reward: +3 gold\n");
-
-                                win = true;
-                            }
+                           
                               
                         }
                         else if ((enemy1.Hp > 0) && (user.Hp <= 0))
