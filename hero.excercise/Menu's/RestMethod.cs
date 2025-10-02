@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireFIghter_1.Menu_s
+namespace FireFighter_1.Menu_s
 {
-    internal class RestMethod
+    public class RestMethod
     {
         //Rest method
         public static void Rest(Player user, Enemy enemy)
         {
             Introduction.Continue = false;
+            Console.Clear();
             Console.WriteLine("\n---------------------------\n");
             Typewriter_Method.SlowType("Zz Zzz\n\nZzz Zz Zzz\n\n\n");
             Typewriter_Method.SlowType("Zz Zzz\n\nZzz Zz Zzz\n\n\n");
@@ -29,7 +30,7 @@ namespace FireFIghter_1.Menu_s
             user.Hp = user.MaxHp;
             user.Shield = user.MaxShield;
             user.EnergyLevel = user.MaxEnergyLevel;
-            MenuOptions.Menu(user, enemy);
+            
 
         }
     }

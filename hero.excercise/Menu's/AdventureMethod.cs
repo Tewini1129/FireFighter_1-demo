@@ -5,25 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireFIghter_1.Menu_s
+namespace FireFighter_1.Menu_s
 {
     internal class AdventureMethod
     {
         //Go on adventure method
         public static void Adventure(Player user, Enemy enemy)
         {
+            Adventures.AdventureMenu();
 
-
-            
-                Adventures.AdventureMenu();
-
-                string Prompt = "---------------------------\n\n\nChoose your adventure:\n\n\n";
-                string[] AdventureOptions = { "\tBurning building (Level 1 required)", "\tResearch (Level 2 required)", "\tThe Nether (Level 3 required)", "\tThe White clad attack (Level 4 required)" };
-                FunMenu AdventuresChoice = new FunMenu(Prompt,AdventureOptions);
+            string Prompt = "---------------------------\n\n\nChoose your adventure:\n\n\n";
+            string[] AdventureOptions = { "\tBurning building (Level 1 required)", "\tResearch (Level 2 required)", "\tThe Nether (Level 3 required)", "\tThe White clad attack (Level 4 required)" };
+            FunMenu AdventuresChoice = new FunMenu(Prompt,AdventureOptions);
             AdventuresChoice.Run();
 
-
-                
 
                     switch (AdventuresChoice.SelectedIndex)
                     {
@@ -50,19 +45,7 @@ namespace FireFIghter_1.Menu_s
                             if (user.Progress >= 2)
                             {
                                 Adventures.Research(user, enemy);
-                                if (Fight.win == true)
-                                {
-                                    Typewriter_Method.SlowType("You leveled up");
-                                    user.Progress++;
-                                    user.Hp = user.Hp * user.Progress;
-                                    user.MaxHp = user.MaxHp * user.Progress;
-                                    user.EnergyLevel += user.Progress;
-                                    user.MaxEnergyLevel += user.Progress;
-                                    user.RegulareDamage = user.RegulareDamage * user.Progress;
-                                    Typewriter_Method.SlowType("\n---------------------------\n", 120);
-
-                                    MenuOptions.Menu(user, enemy);
-                                }
+                                
                             }
                             else
                             {
@@ -80,19 +63,8 @@ namespace FireFIghter_1.Menu_s
                             if (user.Progress >= 3)
                             {
                                 Adventures.TheNether(user, enemy);
-                                if (Fight.win == true)
-                                {
-                                    Typewriter_Method.SlowType("You leveled up");
-                                    user.Progress++;
-                                    user.Hp = user.Hp * user.Progress;
-                                    user.MaxHp = user.MaxHp * user.Progress;
-                                    user.EnergyLevel += user.Progress;
-                                    user.MaxEnergyLevel += user.Progress;
-                                    user.RegulareDamage = user.RegulareDamage * user.Progress;
-                                    Typewriter_Method.SlowType("\n---------------------------\n", 120);
-
-                                    MenuOptions.Menu(user, enemy);
-                                }
+                                
+                                
                             }
                             else
                             {
@@ -108,19 +80,6 @@ namespace FireFIghter_1.Menu_s
                             if (user.Progress >= 4)
                             {
                                 Adventures.WhiteCladAttack(user, enemy);
-                                if (Fight.win == true)
-                                {
-                                    Typewriter_Method.SlowType("You leveled up");
-                                    user.Progress++;
-                                    user.Hp = user.Hp * user.Progress;
-                                    user.MaxHp = user.MaxHp * user.Progress;
-                                    user.EnergyLevel += user.Progress;
-                                    user.MaxEnergyLevel += user.Progress;
-                                    user.RegulareDamage = user.RegulareDamage * user.Progress;
-                                    Typewriter_Method.SlowType("\n---------------------------\n", 120);
-
-                                    Console.WriteLine("Congratulations, you beat the game!");
-                                }
                             }
                             else
                             {

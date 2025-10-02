@@ -1,15 +1,18 @@
 ﻿using FireFighter_1;
-using FireFIghter_1.Menu_s;
+using FireFighter_1.Menu_s;
+using FireFighter_1.Store_Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireFIghter_1
+namespace FireFighter_1
 {
     public  class PlayerTurn
     {
+
+        public static int Choice;
         
         public static void FightPlayerTurn(string userChoice, Player user, Enemy enemy)
         {
@@ -23,13 +26,34 @@ namespace FireFIghter_1
             Typewriter_Method.SlowType($"\t\t{enemy.EnergyLevel}/{enemy.MaxEnergyLevel}\n");
             Typewriter_Method.SlowType("\n\n    Chose your next actions\n\n");
            
-            string Prompt = $"\n---------------------------\n\n\t{user.Name} current stats \n\t\t{user.Hp}/{user.MaxHp}\n\t\t{user.Shield}/{user.MaxShield}\n\t\t{user.EnergyLevel}/{user.MaxEnergyLevel}\n\n\t{enemy.Name} current stats \n\t\t{enemy.Hp}/{enemy.MaxHp}\n\t\t{enemy.EnergyLevel}/{enemy.MaxEnergyLevel}\n\n\n  Chose your next actions\n";
-            string[] Options = { "Use \"Heal\"", "Use \"Redbull\"", "Use \"Parry to gain Energy\"", "Use \"Regular Attack\"", "", "", "" };
+            string Prompt = 
+                (
+                    $"\n-----< =========== >----\n\n\t{user.Name} current stats \n" +
+                    $"\t\t{user.Hp}/{user.MaxHp}\n" +
+                    $"\t\t{user.Shield}/{user.MaxShield}\n" +
+                    $"\t\t{user.EnergyLevel}/{user.MaxEnergyLevel}\n\n" +
+                    $"\t{enemy.Name} current stats \n" +
+                    $"\t\t{enemy.Hp}/{enemy.MaxHp}\n" +
+                    $"\t\t{enemy.EnergyLevel}/{enemy.MaxEnergyLevel}\n\n\n  " +
+                    $"Chose your next actions\n"
+                );
+
+            string[] Options = 
+                { 
+                    "Use \"Heal\"",
+                    "Use \"Redbull\"",
+                    "Use \"Adolla Link\"",
+                    "Use \"Parry to gain Energy\"",
+                    "Use \"Regular Attack\"",
+                    "",
+                    "",
+                    ""
+                };
             //Skill 1
             if (user.Progress != 0)
             {
                 Typewriter_Method.SlowType("\tUse \"Skill 1\"(-3 energy)\n");
-                Options[4] = "Use \"Skill 1\"(-3 energy)";
+                Options[5] = "Use \"Skill 1\"(-3 energy)";
             }
 
 
@@ -37,7 +61,7 @@ namespace FireFIghter_1
             if (user.Progress >= 2)
             {
                 Typewriter_Method.SlowType("\tUse \"Skill 2\" (-5 energy)\n");
-                Options[5] = "Use \"Skill 2\" (-5 energy)";
+                Options[6] = "Use \"Skill 2\" (-5 energy)";
             }
 
 
@@ -45,7 +69,7 @@ namespace FireFIghter_1
             if (user.Progress >= 3)
             {
                 Typewriter_Method.SlowType("\tUse \"Skill 3\" (-7 energy)\n");
-                Options[6] = "7.Use \"Skill 3\" (-7 energy)";
+                Options[7] = "7.Use \"Skill 3\" (-7 energy)";
             }
 
 
@@ -58,21 +82,13 @@ namespace FireFIghter_1
                 //Menu
                 FunMenu FightOptions = new FunMenu(Prompt, Options);
                 FightOptions.Run();
-
+                Choice = FightOptions.SelectedIndex;
                 switch (FightOptions.SelectedIndex)
                 {
                     case 0:
-                        if (user.inventory.Contains("Healing potion"))
+                        if (user.inventory["Health Potion"] > 0)
                         {
-
-
-                            user.Hp = user.MaxHp;
-                            user.EnergyLevel = user.MaxEnergyLevel;
-
-                            Typewriter_Method.SlowType($"\n\n{user.Name}'s Hp and Energy is fully restored\n\t{user.Name} Hp: {user.Hp} Energy Level: {user.EnergyLevel}\n");
-                            user.inventory.Remove("Healing potion");
-                            Introduction.Continue = true;
-                            Typewriter_Method.SlowType("\n---------------------------\n", 90);
+                            HealthPotion.Use(user);
                         }
                         else
                         {
@@ -84,18 +100,9 @@ namespace FireFIghter_1
                         break;
 
                     case 1:
-                        if (user.inventory.Contains("Redbull"))
+                        if (user.inventory["Redbull"] > 0)
                         {
-
-
-                            user.Shield = user.MaxShield;
-                            Typewriter_Method.SlowType($"\n{user.Name} cracks a ice cold redbull...{user.Name} gets wings\n");
-
-                            Typewriter_Method.SlowType($"\n\n{user.Name}'s Shield is fully restored\n\t{user.Name} Shield: {user.Shield}\n");
-                            Introduction.Continue = true;
-
-
-                            Typewriter_Method.SlowType("\n---------------------------\n", 90);
+                            Redbull.Use(user);
                         }
                         else
                         {
@@ -108,26 +115,50 @@ namespace FireFIghter_1
                         break;
 
                     case 2:
-                        Typewriter_Method.SlowType($"\n\n{user.Name} prepares to parry {enemy.Name}'s attack\n");
-                        user.EnergyLevel++;
-                        Typewriter_Method.SlowType($"{user.Name} gains +1 Energy\n{user.Name}'s Energy level is now {user.EnergyLevel}\n\n");
-                        Introduction.Continue = true;
-                        Typewriter_Method.SlowType("\n---------------------------\n", 90);
+                        if (user.inventory["Adolla Link"] > 0)
+                        {
+                            AdollaLink.Use(user);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\nYou do not have a Adolla Link...\n\n");
+                            Typewriter_Method.SlowType("Choose another action:\n");
+                            Typewriter_Method.SlowType("\n---------------------------\n", 90);
+
+                        }
                         break;
 
                     case 3:
-                        PlayerSkills.RegularAttack(user);
-                        enemy.Hp -= user.RegulareDamage;
+                        Typewriter_Method.SlowType($"\n\n{user.Name} prepares to parry {enemy.Name}'s attack\n");
+                        if(user.EnergyLevel == user.MaxEnergyLevel)
+                        {
+                            Typewriter_Method.SlowType($"{user.Name}'s Energy level is already at max\n\n");
+                            Introduction.Continue = true;
+                            Typewriter_Method.SlowType("\n---------------------------\n", 90);
+                        }
+                        else
+                        {
+                            user.EnergyLevel++;
+                            Typewriter_Method.SlowType($"{user.Name} gains +1 Energy\n{user.Name}'s Energy level is now {user.EnergyLevel}\n\n");
+                            Introduction.Continue = true;
+                            Typewriter_Method.SlowType("\n---------------------------\n", 90);
+
+                        }
+                            break;
+
+                    case 4:
+                        PlayerSkills.RegularAttack(user, enemy);
+                        
                         Introduction.Continue = true;
                         break;
 
-                    case 4:
+                    case 5:
                         if (user.EnergyLevel >= 3)
                         {
-                            PlayerSkills.Skill1(user);
-                            enemy.Hp -= (user.RegulareDamage * 2);
+                            PlayerSkills.Skill1(user, enemy);
                             
-                            user.EnergyLevel -= 3;
+                            
+                            
                             Introduction.Continue = true;
                         }
 
@@ -139,12 +170,11 @@ namespace FireFIghter_1
                         }
                         break;
 
-                    case 5:
+                    case 6:
                         if ((user.Progress >= 2) && (user.EnergyLevel >= 5))
                         {
-                            PlayerSkills.Skill2(user);
-                            enemy.Hp -= (user.RegulareDamage * 3);
-                            user.EnergyLevel -= 5;
+                            PlayerSkills.Skill2(user, enemy);
+                            
                             Introduction.Continue = true;
                         }
                         else if (user.Progress < 2)
@@ -162,12 +192,10 @@ namespace FireFIghter_1
                         }
                         break;
 
-                    case 6:
+                    case 7:
                         if ((user.Progress >= 3) && (user.EnergyLevel >= 7))
                         {
-                            PlayerSkills.Skill3(user);
-                            enemy.Hp -= (user.RegulareDamage * 10);
-                            user.EnergyLevel -= 7;
+                            PlayerSkills.Skill3(user, enemy);
                             Introduction.Continue = true;
                         }
                         else if (user.Progress < 3)

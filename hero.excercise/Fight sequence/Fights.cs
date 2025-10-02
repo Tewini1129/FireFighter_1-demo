@@ -1,6 +1,5 @@
 ﻿using FireFighter_1;
-using FireFIghter_1;
-using FireFIghter_1.Menu_s;
+using FireFighter_1.Menu_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,15 +67,14 @@ namespace FireFighter_1
                             Console.WriteLine("\n---------------------------\n\n");
 
                             Typewriter_Method.SlowType($"You won against {enemy1.Name}\n");
-                            if ((enemy1.Name == $"White clad{user.Progress}") || (enemy1.Name == "Boss:White Clad"))
+                            if ((enemy1.Name == $"White Clad Lv.{user.Progress}") || (enemy1.Name == "Boss:White Clad"))
                             {
-
-
-                                user.Gold += enemy1.Reward;
-                                Typewriter_Method.SlowType($"Reward: +{enemy1.Reward} gold\n");
+                                user.Bronze += enemy1.Reward;
+                                Typewriter_Method.SlowType($"Reward: ");
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Typewriter_Method.SlowType($"+{enemy1.Reward} Bronze\n");
+                                Console.ResetColor();
                                 Typewriter_Method.SlowType("\n---------------------------\n", 90);
-
-
 
                                 win = true;
                             }
@@ -113,7 +111,7 @@ namespace FireFighter_1
 
                         Typewriter_Method.SlowType($"You successfully ran from {enemy1.Name}\n");
                         Introduction.Continue = true;
-                        Typewriter_Method.SlowType("\n---------------------------\n", 60);
+                        Typewriter_Method.SlowType("\n-------🏃‍---🏃‍---🏃‍---🏃‍---🏃‍--------\n", 60);
 
                     }
                 }

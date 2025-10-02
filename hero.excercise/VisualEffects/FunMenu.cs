@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireFIghter_1.Menu_s
+namespace FireFighter_1
 {
     public class FunMenu
     {

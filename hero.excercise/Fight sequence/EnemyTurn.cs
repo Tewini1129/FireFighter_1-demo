@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireFIghter_1
+
+namespace FireFighter_1
 {
     internal class EnemyTurn
     {
@@ -18,7 +19,7 @@ namespace FireFIghter_1
             {
                 if (enemy.EnergyLevel == enemy.MaxEnergyLevel)
                 {
-                    if (Fight.userChoice != "3")
+                    if (PlayerTurn.Choice != 3)
                     {
                         if ((enemy.Name == "Boss:White Clad") || (enemy.Name == $"White Clad Lv.{user.Progress}"))
                         {
@@ -27,7 +28,7 @@ namespace FireFIghter_1
                         }
                         else if (enemy.Name == $"Demon Lv.{user.Progress}")
                         {
-                            Typewriter_Method.SlowType($"\n{enemy.Name}opens up his mouth breathing heavy fire out {enemy.Damage} damage\n");
+                            Typewriter_Method.SlowType($"\n{enemy.Name} opens up his mouth breathing heavy fire out {enemy.ultimate} damage\n");
                             Console.WriteLine("");
                         }
                         else if (enemy.Name == $"Infernal .{user.Progress}")
@@ -102,7 +103,7 @@ namespace FireFIghter_1
                 }
                 else
                 {
-                    if((userChoice == "1")||(userChoice == "2"))
+                    if((PlayerTurn.Choice == 0)||(PlayerTurn.Choice == 1)||(PlayerTurn.Choice == 2))
                     {
                     
                         Typewriter_Method.SlowType($"As soon as you finnish the bottle {enemy.Name} runs up and gets a clean hook right into your ribs\n");
@@ -130,7 +131,7 @@ namespace FireFIghter_1
                         enemy.EnergyLevel++;
                         Typewriter_Method.SlowType("\n---------------------------\n", 120);
                     }
-                    else if (userChoice != "3")
+                    else if (PlayerTurn.Choice != 3)
                     {
                         if ((enemy.Name == "Boss:White Clad") || (enemy.Name == $"White Clad Lv.{user.Progress}"))
                         {

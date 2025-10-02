@@ -1,5 +1,5 @@
 ﻿using FireFighter_1;
-using FireFIghter_1.Menu_s;
+using FireFighter_1.Menu_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +58,7 @@ namespace FireFighter_1
                         
                         
                         
-                } while (randomNumber != 2);
+                } while ((randomNumber != 2)&&(user.Hp > 0));
                 if ((Fight.win == true)&&(user.Progress <2))
                 {
                     Typewriter_Method.SlowType("You leveled up");
@@ -67,8 +67,9 @@ namespace FireFighter_1
 
                     MenuOptions.Menu(user, enemy);
                 }
-                else if()
+                else if (Fight.win == true)
                 {
+                    MenuOptions.Menu(user, enemy);
 
                 }
 
@@ -98,42 +99,37 @@ namespace FireFighter_1
             Console.ReadKey();
 
                 
-                    do
-                    {
-                        randomNumber = random.Next(0, 3);
-                        Enemy enemy1 = new Enemy(user, randomNumber);
+            do
+            {
+                randomNumber = random.Next(0, 3);
+                Enemy enemy1 = new Enemy(user, randomNumber);
 
-                        Console.WriteLine("\n---------------------------\n\n");
-                        Fight.EnemyFight(enemy1, user);
+                Console.WriteLine("\n---------------------------\n\n");
+                Fight.EnemyFight(enemy1, user);
 
-                    } while (randomNumber != 2);
-                    if (Fight.win == true)
-                    {
-                        Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
-                        Typewriter_Method.SlowType("You find out the tracker places him in the nether, a closed of underground world\n");
-                        Introduction.Continue = true;
-                        Typewriter_Method.SlowType("\n---------------------------\n", 120);
+            } while ((randomNumber != 2)&& (user.Hp > 0));
+            if (Fight.win == true)
+            {
+                Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
+                Typewriter_Method.SlowType("You find out the tracker places him in the nether, a closed of underground world\n");
+                Introduction.Continue = true;
+                Typewriter_Method.SlowType("\n---------------------------\n", 120);
 
-                        if ((Fight.win == true)&&(user.Progress < 3))
-                        {
+                if ((Fight.win == true)&&(user.Progress < 3))
+                {
                     Typewriter_Method.SlowType("You leveled up");
                     LevelUpRewards.LevelUp(user);
-
-
-
                     Typewriter_Method.SlowType("\n---------------------------\n", 120);
-                    Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
 
                     MenuOptions.Menu(user, enemy);
-                        }
-                        else if(Fight.win == true)
-                        {
-                    Typewriter_Method.SlowType("\nThe member managed to get away but not without our tracker on him\n");
+                }
+                else if(Fight.win == true)
+                {
 
                     MenuOptions.Menu(user, enemy);
 
-                        }
-                    }
+                }
+            }
             Introduction.Continue = true;
 
         }
@@ -156,8 +152,6 @@ namespace FireFighter_1
             while (Introduction.Continue == false)
             {
                 Console.ReadKey();
-
-                
                     do
                     {
                     
@@ -195,21 +189,9 @@ namespace FireFighter_1
                         }
                         Introduction.Continue = true;
    
-                    } while (enemies[randomNumber] != "Whiteclad");
+                    } while ((enemies[randomNumber] != "Whiteclad")&& (user.Hp > 0));
 
-                if (Fight.win == true)
-                {
-                    Typewriter_Method.SlowType("You leveled up");
-                    user.Progress++;
-                    user.Hp = user.Hp * user.Progress;
-                    user.MaxHp = user.MaxHp * user.Progress;
-                    user.EnergyLevel += user.Progress;
-                    user.MaxEnergyLevel += user.Progress;
-                    user.RegulareDamage = user.RegulareDamage * user.Progress;
-                    Typewriter_Method.SlowType("\n---------------------------\n", 120);
-
-                    MenuOptions.Menu(user, enemy);
-                }
+               
 
             }
 
@@ -244,13 +226,13 @@ namespace FireFighter_1
                     if (Fight.win == true)
                     {
                         Console.Clear();
-                        Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally gathered\n");
+                        Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally started to gather\n");
                         Introduction.EndGame = true;
                         EndScreen.End(user);
                     }
                         Introduction.Continue = true;
 
-                } while (randomNumber != 2);
+                } while ((randomNumber != 2)&& (user.Hp > 0));
             }
         }
     }

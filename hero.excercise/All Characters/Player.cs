@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FireFighter_1.Menu_s;
+using FireFighter_1.Store_Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +14,31 @@ namespace FireFighter_1
 
 
         //Stats
-        public int Clues;
-        public string? Name;
-        public int PowerClass;
-        public int MaxHp;
-        public int Hp;
-        public int Shield;
-        public int MaxShield;
-        public int MaxEnergyLevel;
-        public int EnergyLevel;
-        public int RegulareDamage;
-        public int Gold;
-        public int Progress;
-        public List<string> inventory = new List<string>();
+        public string? Name { get; set; }
+        public string IdCode { get; set; }
+        public int PowerClass{ get; set; }
+        public int OriginalHp { get; set; }
+        public int MaxHp{ get; set; }
+        public int Hp { get; set; }
+        public int Shield { get; set; }
+        public int MaxShield { get; set; }
+        public int MaxEnergyLevel { get; set; }
+        public int EnergyLevel { get; set; }
+        public int OriginalDamage { get; set; }
+        public int RegulareDamage { get; set; }
+        public double Gold { get; set; }
+        public double Silver { get; set; }
+        public double Bronze { get; set; }
+        public int Progress { get; set; }
+
+        public Membership MemberCard = new Membership();
+        public Customer UserCustomer = new Customer();
+        public Dictionary<string, int> inventory { get; set; } = new Dictionary<string, int>()
+        {
+            { "Redbull", 0},
+            { "Health Potion", 0},
+            { "Adolla Link", 0}
+        };
 
 
 
@@ -33,6 +47,8 @@ namespace FireFighter_1
         {
             Name = Introduction.name;
         }
+
+        
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using FireFIghter_1;
+﻿using FireFighter_1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace FireFighter_1
         public int EnergyLevel;
         public int Damage;
         public int ultimate;
-        public int Reward;
+        public double Reward;
 
 
         public Enemy(Player user, int randomNumber)
@@ -32,46 +32,44 @@ namespace FireFighter_1
             if(Adventures.randomNumber == 0)
             {
                 Name = $"Infernal .{user.Progress}";
-                MaxHp = user.Progress * user.MaxHp;
-                Hp = user.Progress * user.MaxHp;
-                    EnergyLevel = 0;
-                    MaxEnergyLevel = 5;
+                MaxHp = user.Progress * user.OriginalHp;
+                Hp = user.Progress * user.OriginalHp;
+                EnergyLevel = 0;
+                MaxEnergyLevel = 5;
                 Damage = user.RegulareDamage / 2;
                 ultimate = user.RegulareDamage * 2;
-                Reward = 2;
+                Reward = 6;
             }
             else if (Adventures.randomNumber == 1)
             {
                 Level = user.Progress;
                 Name = $"Demon Lv.{user.Progress}";
-                MaxHp = (user.Progress + 1) * user.MaxHp;
-                Hp = user.MaxHp;
-                    MaxEnergyLevel = 5;
-                    EnergyLevel = 0;
-                Damage = user.RegulareDamage + 1 * user.Progress;
-                ultimate = user.RegulareDamage * 3;
-                Reward = 3;
+                MaxHp = user.OriginalHp;
+                Hp = user.OriginalHp;
+                MaxEnergyLevel = 5;
+                EnergyLevel = 0;
+                Damage = user.OriginalDamage + 1 * user.Progress;
+                ultimate = user.OriginalDamage * 3;
+                Reward = 9;
             }
             else if(Adventures.randomNumber == 2)
             {
                 Level = user.Progress;
                     if (user.Progress >= 2)
                     {
-                    Name = $"White Clad Lv.{user.Progress}";
-
-
+                        Name = $"White Clad Lv.{user.Progress}";
                     }
                     else
                     {
-                    Name = "Boss:White Clad";
+                        Name = "Boss:White Clad";
                     }
-                MaxHp = user.Progress * user.MaxHp + 100;
-                Hp = user.Progress * user.MaxHp + 100;
-                    MaxEnergyLevel = 5;
-                    EnergyLevel = 0;
-                Damage = (user.RegulareDamage + 2) * user.Progress;
+                MaxHp = ((user.Progress * user.OriginalHp) + 150);
+                Hp = ((user.Progress * user.OriginalHp) + 150);
+                MaxEnergyLevel = 5;
+                EnergyLevel = 0;
+                Damage = (user.OriginalDamage + 50) * user.Progress;
                 ultimate = user.RegulareDamage * 10;
-                Reward = 6;
+                Reward = 18;
                 }
         }
     }
