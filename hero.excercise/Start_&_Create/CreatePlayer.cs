@@ -77,7 +77,7 @@ namespace FireFighter_1
                     if (PowerChoice.SelectedIndex == 2)
                     {
                         Introduction.randomNumber = Introduction.randomGenerated.Next(1, 11);
-                        if ((Introduction.randomNumber <= 4) &&(Introduction.randomNumber >= 7))
+                        if (Introduction.randomNumber <= 4)
                         {
 
                             Introduction.powerClass = 1;
@@ -93,9 +93,9 @@ namespace FireFighter_1
                             user.EnergyLevel = 10;
                             user.OriginalDamage = 30;
                             user.RegulareDamage = 30;
-                            user.Gold = 2; 
-                            user.Silver = 4;
-                            user.Bronze = 6;
+                            user.Wallet["Gold"] = 2; 
+                            user.Wallet["Silver"] = 4;
+                            user.Wallet["Bronze"] = 6;
                             Typewriter_Method.SlowType($"\n{user.Name} got {user.PowerClass}\n");
                             Typewriter_Method.SlowType("First generation, great! We needed just that!\n");
                             Typewriter_Method.SlowType("\n---------------------------\n", 60);
@@ -115,9 +115,9 @@ namespace FireFighter_1
                             user.EnergyLevel = 6;
                             user.OriginalDamage = 40;   
                             user.RegulareDamage = 40;
-                            user.Gold = 4;
-                            user.Silver = 8;
-                            user.Bronze = 12;
+                            user.Wallet["Gold"] = 4;
+                            user.Wallet["Silver"] = 8;
+                            user.Wallet["Bronze"] = 12;
                             Typewriter_Method.SlowType($"\n{user.Name} got {Introduction.powerClass}\n");
                             Typewriter_Method.SlowType("Second generation, that's perfect! Very useful in the right hands!\n");
                             Typewriter_Method.SlowType("\n---------------------------\n", 60);
@@ -137,9 +137,9 @@ namespace FireFighter_1
                             user.EnergyLevel = 10;
                             user.OriginalDamage = 50;
                             user.RegulareDamage = 50;
-                            user.Gold = 1;
-                            user.Silver = 2;
-                            user.Bronze = 3;    
+                            user.Wallet["Gold"] = 1;
+                            user.Wallet["Silver"] = 2;
+                            user.Wallet["Bronze"] = 3;    
                             Typewriter_Method.SlowType($"\n{user.Name} got {user.PowerClass}\n");
                             Typewriter_Method.SlowType("Oh wow, that's incredible, not many of those around!\n");
                             Typewriter_Method.SlowType("\n---------------------------\n", 60);
@@ -161,9 +161,9 @@ namespace FireFighter_1
                         user.EnergyLevel = 6;
                         user.OriginalDamage = 40;
                         user.RegulareDamage = 40;
-                        user.Gold = 4;
-                        user.Silver = 8;
-                        user.Bronze = 12;
+                        user.Wallet["Gold"] = 4;
+                        user.Wallet["Silver"] = 8;
+                        user.Wallet["Bronze"] = 12;
                         Typewriter_Method.SlowType($"\n{user.Name} got {Introduction.powerClass}\n");
                         Typewriter_Method.SlowType("Second generation, that's perfect! Very useful in the right hands!\n");
                         Typewriter_Method.SlowType("\n---------------------------\n", 60);
@@ -184,9 +184,9 @@ namespace FireFighter_1
                         user.EnergyLevel = 10;
                         user.OriginalDamage = 30;
                         user.RegulareDamage = 30;
-                        user.Gold = 2;
-                        user.Silver = 4;
-                        user.Bronze = 6;
+                        user.Wallet["Gold"] = 2;
+                        user.Wallet["Silver"] = 4;
+                        user.Wallet["Bronze"] = 6;
                         Typewriter_Method.SlowType($"\n{user.Name} is now {user.PowerClass}\n");
                         Typewriter_Method.SlowType("First generation, great! We needed just that!\n");
                         Typewriter_Method.SlowType("\n---------------------------\n", 60);
@@ -194,9 +194,11 @@ namespace FireFighter_1
                     }
 
             //Your Player is now created
-                    LogIn.HasAccount = true;
-                    Introduction.Continue = true;
-                    return user;
+            Program.users.Add(user);
+            SaveInfo.SavePlayers(Program.users);
+            LogIn.HasAccount = true;
+            Introduction.Continue = true;
+            return user;
                 
                 
                 

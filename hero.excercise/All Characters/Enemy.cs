@@ -16,7 +16,7 @@ namespace FireFighter_1
     {
         
         //name, level, hp, damage,
-        public int Level;
+        
         public string Name = "";
         public int MaxHp;
         public int Hp;
@@ -31,6 +31,7 @@ namespace FireFighter_1
         {
             if(Adventures.randomNumber == 0)
             {
+                
                 Name = $"Infernal .{user.Progress}";
                 MaxHp = user.Progress * user.OriginalHp;
                 Hp = user.Progress * user.OriginalHp;
@@ -42,19 +43,19 @@ namespace FireFighter_1
             }
             else if (Adventures.randomNumber == 1)
             {
-                Level = user.Progress;
+                
                 Name = $"Demon Lv.{user.Progress}";
-                MaxHp = user.OriginalHp;
-                Hp = user.OriginalHp;
+                MaxHp = user.MaxHp;
+                Hp = user.Hp;
                 MaxEnergyLevel = 5;
                 EnergyLevel = 0;
-                Damage = user.OriginalDamage + 1 * user.Progress;
+                Damage = (user.OriginalDamage + 1 * user.Progress);
                 ultimate = user.OriginalDamage * 3;
                 Reward = 9;
             }
             else if(Adventures.randomNumber == 2)
             {
-                Level = user.Progress;
+                
                     if (user.Progress >= 2)
                     {
                         Name = $"White Clad Lv.{user.Progress}";
@@ -63,11 +64,11 @@ namespace FireFighter_1
                     {
                         Name = "Boss:White Clad";
                     }
-                MaxHp = ((user.Progress * user.OriginalHp) + 150);
-                Hp = ((user.Progress * user.OriginalHp) + 150);
+                MaxHp = (user.Progress * (user.OriginalHp + 150));
+                Hp = (user.Progress * (user.OriginalHp + 150));
                 MaxEnergyLevel = 5;
                 EnergyLevel = 0;
-                Damage = (user.OriginalDamage + 50) * user.Progress;
+                Damage = (user.OriginalDamage + 150) * user.Progress;
                 ultimate = user.RegulareDamage * 10;
                 Reward = 18;
                 }

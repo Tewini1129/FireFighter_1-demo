@@ -18,16 +18,16 @@ namespace FireFighter_1
             {
                 enemy.Hp -= user.RegulareDamage;
                 Typewriter_Method.SlowType($"{user.Name} shoots small balls of fire into the enemy\n");
-                Typewriter_Method.SlowType("\n---------------------------\n", 50);
                 Typewriter_Method.SlowType($"{user.Name} deals {user.RegulareDamage}\n");
+                Typewriter_Method.SlowType("\n---------------------------\n", 50);
 
             }
             else if (user.PowerClass == 2)
             {
                 enemy.Hp -= user.RegulareDamage;
                 Typewriter_Method.SlowType($"{user.Name} takes out a lighter and fires small arrow like flames at the enemy\n");
-                Typewriter_Method.SlowType("\n---------------------------\n", 50);
                 Typewriter_Method.SlowType($"{user.Name} deals {user.RegulareDamage}\n");
+                Typewriter_Method.SlowType("\n---------------------------\n", 50);
 
             }
             else if (user.PowerClass == 3)

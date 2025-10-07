@@ -13,15 +13,14 @@ namespace FireFighter_1
         public static List<Player> users = SaveInfo.LoadAllUsers();
         public static void Main(string[] args)
         {
-            
             Player? user = null;
             
 
             while (Introduction.EndGame == false)
             {
-                Enemy enemy1 = new Enemy(user ?? new Player(), Adventures.randomNumber);
-                user = LogIn.LogInOrCreate(users, enemy1);
+                user = LogIn.LogInOrCreate(users);
                 user = LogIn.currentUser;
+                Enemy enemy1 = new Enemy(user ?? new Player(), Adventures.randomNumber);
                 if(LogIn.HasAccount == true)
                 { 
                     MenuOptions.Menu(user, enemy1);

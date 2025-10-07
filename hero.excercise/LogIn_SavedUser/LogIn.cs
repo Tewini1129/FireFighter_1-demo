@@ -11,10 +11,10 @@ namespace FireFighter_1
 {
     public class LogIn
     {
-        public static Player currentUser = new Player();
+        public static Player currentUser = new();
         public static bool HasAccount = false; 
 
-        public static Player LogInOrCreate(List<Player> users, Enemy enemy)
+        public static Player LogInOrCreate(List<Player> users)
         {
             string Prompt = "==== Welcome to FireFighter 1====\n";
             string[] Options = { "Sign in", "Create account" };
@@ -34,7 +34,7 @@ namespace FireFighter_1
                         }
                         else
                         {
-                            return SignIn(Program.users, enemy);
+                            return SignIn(Program.users);
 
                         }
                     }
@@ -42,13 +42,13 @@ namespace FireFighter_1
                     {
                         Console.WriteLine("There are no previouse users saved");
                         Typewriter_Method.SlowType("\n-----------------\n", 90);
-                        return LogInOrCreate(users, enemy);
+                        return LogInOrCreate(users);
                     }
 
                     break;
 
                 case 1:
-                    Player? createdUser = Introduction.Introduce(users, enemy);
+                    Player? createdUser = Introduction.Introduce(users);
                     if(createdUser != null)
                     {
                         LogIn.currentUser = createdUser;
@@ -63,7 +63,7 @@ namespace FireFighter_1
 
         }
 
-        public static Player SignIn(List<Player> users, Enemy enemy)
+        public static Player SignIn(List<Player> users)
         {
             Console.Clear();
             Console.WriteLine("==== Sign in ====");
@@ -78,10 +78,10 @@ namespace FireFighter_1
             {
                 HasAccount = true;
                 currentUser = foundUser;
-                RestMethod.Rest(currentUser, enemy);
+                RestMethod.Rest(currentUser);
                 Introduction.EndGame = false;
                 Console.WriteLine($"==== Welcome {currentUser.Name} ====");
-                PrintStats.Stats(currentUser, enemy);
+                PrintStats.Stats(currentUser);
                 Typewriter_Method.SlowType("\n-----------------\n", 90);
                 return currentUser;
 
@@ -96,11 +96,11 @@ namespace FireFighter_1
                 TryAgain.Run();
                 if(TryAgain.SelectedIndex == 0)
                 {
-                    return SignIn(users, enemy);
+                    return SignIn(users);
                 }
                 else
                 {
-                    Player? createdUser = Introduction.Introduce(users, enemy);
+                    Player? createdUser = Introduction.Introduce(users);
                     if (createdUser != null)
                     {
                         LogIn.currentUser = createdUser;

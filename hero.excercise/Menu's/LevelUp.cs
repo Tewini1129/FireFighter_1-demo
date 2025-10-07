@@ -18,7 +18,7 @@ namespace FireFighter_1.Menu_s
             user.EnergyLevel += user.Progress;
             user.MaxEnergyLevel += user.Progress;
             user.RegulareDamage = user.OriginalDamage * user.Progress;
-            user.MaxShield = user.MaxShield * user.Progress;
+            user.MaxShield = user.MaxShield * 2;
             user.Shield = user.Shield * user.Progress;
         }
     }

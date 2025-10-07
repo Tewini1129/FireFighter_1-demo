@@ -39,7 +39,7 @@ namespace FireFighter_1.Store_Product
                 }
             }
             
-            return $"\n\n---<====)( Account Info )(====>----\n" +
+            return $"\n\n----<====)( Account Info )(====>----\n" +
                 $"\nUsername: {user.Name}\n" +
                 $"Password: {user.IdCode}\n" +
                 $"MemberShip Level: {user.MemberCard.CurrentMemberShipLevel}\n" +

@@ -28,7 +28,7 @@ namespace FireFighter_1
 
 
 
-        public static Player Introduce(List<Player> users, Enemy enemy)
+        public static Player Introduce(List<Player> users)
         {
 
             string Prompt = (

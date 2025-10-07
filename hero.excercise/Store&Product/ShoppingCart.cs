@@ -14,37 +14,43 @@ namespace FireFighter_1.Store_Product
     public class ShoppingCart
     {
         public double Total;
-        public int redbullInCart = 0;
-        public int healthPotionInCart = 0;
-        public int adollaLinkInCart = 0;
+        public int nrItemsInCart;
         public double currentPrice;
         public Dictionary<string, int> itemsInCart;
+        Dictionary<string, (Products p, double price, List<Products> itemList)> StoreProducts;
+
+        //Reference products
+        public static Redbull r1 = new Redbull();
+        public static HealthPotion h1 = new HealthPotion();
+        public static AdollaLink a1 = new AdollaLink();
 
 
-        public static string redbullLabel = $"{Redbull.Name}";
-        
-        public static string healthPotionLabel = $"{HealthPotion.Name}";
-        
-        public static string adollaLinkLabel = $"{AdollaLink.Name}";
-
-
-
+        public static string redbullLabel = $"{r1.Name}";
+        public static string healthPotionLabel = $"{h1.Name}";
+        public static string adollaLinkLabel = $"{a1.Name}";
 
 
         public ShoppingCart()
         {
             itemsInCart = new Dictionary<string, int>()
             {
-                { ("Redbull 500ml  "), 0 },
-                { "Health Potion  ", 0 },
-                { "Adolla Link  ", 0 }
+                { redbullLabel, 0 },
+                { healthPotionLabel, 0 },
+                { adollaLinkLabel, 0 }
+            };
+
+            StoreProducts = new()
+            {
+                { r1.Name, (r1, r1.Price, StoreMethod.redbulls)  },
+                { h1.Name,(h1, h1.Price, StoreMethod.healthPotions) },
+                { a1.Name,(a1, a1.Price, StoreMethod.adollaLink)}
             };
         }
-
 
         public void ShoppingCartMenu(Player user, Enemy enemy, ShoppingCart Cart)
         {
             int CartOptions = 0;
+
             foreach(var item in Cart.itemsInCart)
             {
                 if (item.Value > 0)
@@ -56,248 +62,109 @@ namespace FireFighter_1.Store_Product
             string[] Options = new string[CartOptions + 2];
 
 
-                //sets the options to items in cart
-                
-            int nrOfOption = 2;
-            foreach (var item in itemsInCart)
-            {
-
-                if (item.Value > 0)
-                {
-                    Options[nrOfOption] = ($"{item.Value}x {item.Key}");
-                    nrOfOption++;
-                }
-
-            }
 
 
             bool leave = false;
-            while (leave == false)
+            while (!leave)
             {
-
-
-
+                //sets the options to items in cart
                 
+                nrItemsInCart = itemsInCart.Values.Sum();
+                int nrOfOption = 2;
+                foreach (var item in itemsInCart)
+                {
+                    if (item.Value > 0)
+                    {
+                        Options[nrOfOption] = ($"{item.Value}x {item.Key}");
+                        nrOfOption++;
+                    }
+                }
 
-                int PositionOfRedbull = Array.FindIndex(Options, s => s != null && s.Contains($"{redbullInCart}x {Redbull.Name}"));
+                int PositionOfRedbull = Array.FindIndex(Options, s => s != null && s.Contains($"{itemsInCart[redbullLabel]}x {redbullLabel}"));
                 if (PositionOfRedbull > 0)
                 {
-                    Options[PositionOfRedbull] = $"{redbullInCart}x {redbullLabel} {user.MemberCard.MembersPrice(Redbull.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}";
+                    Options[PositionOfRedbull] = $"{itemsInCart[redbullLabel]}x {redbullLabel} {user.MemberCard.MembersPrice(r1.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}";
                 }
 
-
-
-
-
-                int PositionOfHealthPotion = Array.FindIndex(Options, s => s != null && s.Contains($"{healthPotionInCart}x {HealthPotion.Name}"));
-
+                int PositionOfHealthPotion = Array.FindIndex(Options, s => s != null && s.Contains($"{itemsInCart[healthPotionLabel]}x {healthPotionLabel}"));
                 if (PositionOfHealthPotion > 0)
                 {
-                    Options[PositionOfHealthPotion] = $"{healthPotionInCart}x {healthPotionLabel} {user.MemberCard.MembersPrice(HealthPotion.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}";
+                    Options[PositionOfHealthPotion] = $"{itemsInCart[healthPotionLabel]}x {healthPotionLabel} {user.MemberCard.MembersPrice(h1.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}";
                 }
 
-
-
-
-
-                int PositionOfAdollaLink = Array.FindIndex(Options, s => s != null && s.Contains($"{adollaLinkInCart}x {AdollaLink.Name}"));
-
+                int PositionOfAdollaLink = Array.FindIndex(Options, s => s != null && s.Contains($"{itemsInCart[adollaLinkLabel]}x {adollaLinkLabel}"));
                 if (PositionOfAdollaLink > 0)
                 {
-                    Options[PositionOfAdollaLink] = $"{adollaLinkInCart}x {adollaLinkLabel} {user.MemberCard.MembersPrice(AdollaLink.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}";
+                    Options[PositionOfAdollaLink] = $"{itemsInCart[adollaLinkLabel]}x {adollaLinkLabel} {user.MemberCard.MembersPrice(a1.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}";
                 }
-
-
 
 
                 if (!Options.Contains("Continue shopping"))
                 {
                     Options[0] = ("Continue shopping");
-                    Options[1] = ($"Checkout Total: {user.MemberCard.MembersPrice(Cart.Total * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}");
+                    Options[1] = ($"Checkout Total: {user.MemberCard.MembersPrice(Cart.Total * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}  ||  {nrItemsInCart}x Items in cart");
                 }
 
 
                 Console.Clear();
                 string Prompt = $"\n\t----<====== Shopping Cart ======>----\n\nChoose a item to remove from your ShoppingCart\n";
 
-                FunMenu CartMenu = new FunMenu(Prompt, Options);
+                FunMenu CartMenu = new(Prompt, Options);
                 CartMenu.Run();
 
                 //Player removes item in cart
                 if (CartMenu.SelectedIndex > 1)
                 {
-                    if (CartMenu.Options[CartMenu.SelectedIndex].Contains($"{redbullInCart}x {Redbull.Name} {user.MemberCard.MembersPrice(Redbull.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}"))
-                    {
-                        StoreMethod.redbulls.Add(new Redbull());
-                        redbullInCart -= 1;
-                        Cart.Total -= user.MemberCard.MembersPrice(Redbull.Price);
-                        Cart.itemsInCart["Redbull 500ml -"] -= 1;
-                        leave = true;
-                        ShoppingCartMenu(user, enemy, Cart);
-                    }
-                    else if (CartMenu.Options[CartMenu.SelectedIndex].Contains($"{healthPotionInCart}x {HealthPotion.Name} {user.MemberCard.MembersPrice(HealthPotion.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}"))
-                    {
-                        StoreMethod.healthPotions.Add(new HealthPotion());
-                        healthPotionInCart -= 1;
-                        Cart.Total -= user.MemberCard.MembersPrice(HealthPotion.Price);
-                        Cart.itemsInCart["Health Potion -"] -= 1;
-                        leave = true;
-                        ShoppingCartMenu(user, enemy, Cart);
-                    }
-                    else if (CartMenu.Options[CartMenu.SelectedIndex].Contains($"{adollaLinkInCart}x {AdollaLink.Name} {user.MemberCard.MembersPrice(AdollaLink.Price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}"))
-                    {
-                        StoreMethod.adollaLink.Add(new AdollaLink());
-                        adollaLinkInCart -= 1;
-                        Cart.Total -= user.MemberCard.MembersPrice(AdollaLink.Price);
-                        Cart.itemsInCart["Adolla Link -"] -= 1;
-                        leave = true;
-                        ShoppingCartMenu(user, enemy, Cart);
-                    }
+                    RemoveItem(CartMenu,user, StoreProducts);
+                    ShoppingCartMenu(user, enemy, Cart);
+                    leave = true;
                 }
 
                 //Player chose Checkout
                 else if (CartMenu.SelectedIndex == 1)
                 {
-                    switch (StoreMethod.currency)
+                    if ((Cart.Total * StoreMethod.CurrencyMultiplyer) <= user.Wallet[StoreMethod.currency])
                     {
-                        case "Gold":
-                            if ((Cart.Total * StoreMethod.CurrencyMultiplyer) <= user.Gold)
-                            {
-                                user.Gold -= (Cart.Total * StoreMethod.CurrencyMultiplyer);
-                                Typewriter_Method.SlowType($"-{Cart.Total} gold\n");
-                                Cart.Total = 0;
+                        user.Wallet[StoreMethod.currency] -= (Cart.Total * StoreMethod.CurrencyMultiplyer);
+                        Typewriter_Method.SlowType($"-{Cart.Total} {StoreMethod.currency}\n");
+                        Cart.Total = 0;
 
-                                for (int i = 0; i < redbullInCart; i++)
-                                {
-                                    user.inventory["Redbull"]++;
+                        for (int i = 0; i < itemsInCart[redbullLabel]; i++)
+                        {
+                            user.inventory[redbullLabel]++;
 
-                                }
+                        }
 
-                                for (int i = 0; i < healthPotionInCart; i++)
-                                {
-                                    user.inventory["Health Potion"]++;
-                                }
+                        for (int i = 0; i < itemsInCart[healthPotionLabel]; i++)
+                        {
+                            user.inventory[healthPotionLabel]++;
+                        }
 
-                                for (int i = 0; i < adollaLinkInCart; i++)
-                                {
-                                    user.inventory["Adolla Link"]++;
-                                }
+                        for (int i = 0; i < itemsInCart[adollaLinkLabel]; i++)
+                        {
+                            user.inventory[adollaLinkLabel]++;
+                        }
 
 
-                                Cart.itemsInCart[redbullLabel] = 0;
-                                Cart.itemsInCart[healthPotionLabel] = 0;
-                                Cart.itemsInCart[adollaLinkLabel] = 0;
-
-                                StoreMethod.userWalletIn = 0;
-
-                                Typewriter_Method.SlowType("You chose to checkout");
-                                Typewriter_Method.SlowType("\n---------------------------\n", 90);
-                                leave = true;
-
-                            }
-                            else
-                            {
-                                Console.WriteLine($"You do not have enough {StoreMethod.currency}...\nRemove items to checkout");
-                                Typewriter_Method.SlowType("\n---------------------------\n", 90);
+                        Cart.itemsInCart[redbullLabel] = 0;
+                        Cart.itemsInCart[healthPotionLabel] = 0;
+                        Cart.itemsInCart[adollaLinkLabel] = 0;
 
 
-                            }
-                            break;
-
-                        case "Silver":
-                            if ((Cart.Total * StoreMethod.CurrencyMultiplyer) <= user.Silver)
-                            {
-                                user.Silver -= (Cart.Total * StoreMethod.CurrencyMultiplyer);
-                                Typewriter_Method.SlowType($"-{Cart.Total * StoreMethod.CurrencyMultiplyer} Silver\n");
-                                Cart.Total = 0;
-
-
-
-                                for (int i = 0; i < redbullInCart; i++)
-                                {
-                                    user.inventory["Redbull"]++;
-                                }
-
-                                for (int i = 0; i < healthPotionInCart; i++)
-                                {
-                                    user.inventory["Health Potion"]++;
-                                }
-
-                                for (int i = 0; i < adollaLinkInCart; i++)
-                                {
-                                    user.inventory["Adolla Link"]++;
-                                }
-
-
-                                Cart.itemsInCart[redbullLabel] = 0;
-                                Cart.itemsInCart[healthPotionLabel] = 0;
-                                Cart.itemsInCart[adollaLinkLabel] = 0;
-
-                                StoreMethod.userWalletIn = 0;
-
-
-                                Typewriter_Method.SlowType("You chose to checkout");
-                                Typewriter_Method.SlowType("\n---------------------------\n", 90);
-                                leave = true;
-
-                            }
-                            else
-                            {
-                                Console.WriteLine($"You do not have enough {StoreMethod.currency}...\nRemove items to checkout");
-                                Typewriter_Method.SlowType("\n---------------------------\n", 90);
-
-
-                            }
-                            break;
-
-                        case "Bronze":
-                            if ((Cart.Total * StoreMethod.CurrencyMultiplyer) <= user.Bronze)
-                            {
-                                user.Bronze -= (Cart.Total * StoreMethod.CurrencyMultiplyer);
-                                Typewriter_Method.SlowType($"-{Cart.Total * StoreMethod.CurrencyMultiplyer} Bronze\n");
-                                Cart.Total = 0;
-
-
-                                for (int i = 0; i < redbullInCart; i++)
-                                {
-                                    user.inventory["Redbull"]++;
-                                }
-
-                                for (int i = 0; i < healthPotionInCart; i++)
-                                {
-                                    user.inventory["Health Potion"]++;
-                                }
-
-                                for (int i = 0; i < adollaLinkInCart; i++)
-                                {
-                                    user.inventory["Adolla Link"]++;
-                                }
-
-
-                                Cart.itemsInCart[redbullLabel] = 0;
-                                Cart.itemsInCart[healthPotionLabel] = 0;
-                                Cart.itemsInCart[adollaLinkLabel] = 0;
-
-                                StoreMethod.userWalletIn = 0;
-
-
-                                Typewriter_Method.SlowType("You chose to checkout");
-                                Typewriter_Method.SlowType("\n---------------------------\n", 90);
-                                leave = true;
-
-                            }
-                            else
-                            {
-                                Console.WriteLine($"You do not have enough {StoreMethod.currency}...\nRemove items to checkout");
-                                Typewriter_Method.SlowType("\n---------------------------\n", 90);
-
-
-                            }
-                            break;
+                        Typewriter_Method.SlowType("You chose to checkout");
+                        Typewriter_Method.SlowType("\n---------------------------\n", 90);
+                        leave = true;
 
                     }
+                    else
+                    {
+                        Console.WriteLine($"You do not have enough {StoreMethod.currency}...\nRemove items to checkout");
+                        Typewriter_Method.SlowType("\n---------------------------\n", 90);
 
+
+                    }
                 }
+
                 //Player continues shopping
                 else if (CartMenu.SelectedIndex == 0)
                 {
@@ -308,8 +175,19 @@ namespace FireFighter_1.Store_Product
                     leave = true;
                 }
             }
+        }
+        public void RemoveItem(FunMenu CartMenu, Player user, Dictionary<string, (Products p, double price, List<Products> itemList)> StoreProducts)
+        {
+            foreach (var item in StoreProducts)
+            {
                 
-            
+                if (CartMenu.Options[CartMenu.SelectedIndex].Contains($"{itemsInCart[item.Value.p.Name]}x {item.Value.p.Name} {user.MemberCard.MembersPrice(item.Value.price * StoreMethod.CurrencyMultiplyer)} {StoreMethod.currency}"))
+                {
+                    item.Value.itemList.Add(new Redbull());
+                    itemsInCart[item.Value.p.Name] -= 1;
+                    Total -= user.MemberCard.MembersPrice(item.Value.price);
+                }
+            }
         }
     }
 }

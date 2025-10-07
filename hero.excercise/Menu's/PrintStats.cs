@@ -11,7 +11,7 @@ namespace FireFighter_1.Menu_s
     public class PrintStats
     {
         //See stats method
-        public static void Stats(Player user, Enemy enemy)
+        public static void Stats(Player user)
         {
             Introduction.Continue = false;
             Console.Clear();
@@ -34,14 +34,12 @@ namespace FireFighter_1.Menu_s
             Typewriter_Method.SlowType($"Damage:\t\t\t\t{user.RegulareDamage}\n");
             Console.WriteLine("----------------------------------");
 
-            Typewriter_Method.SlowType($"Gold:\t\t\t\t{user.Gold}\n");
-            Console.WriteLine("----------------------------------");
-
-            Typewriter_Method.SlowType($"Silver:\t\t\t\t{user.Silver}\n");
-            Console.WriteLine("----------------------------------");
-
-            Typewriter_Method.SlowType($"Bronze:\t\t\t\t{user.Bronze}\n");
-            Console.WriteLine("----------------------------------");
+            
+            foreach(var currency in user.Wallet)
+            {
+                Typewriter_Method.SlowType($"{currency.Key}:\t\t\t\t{Math.Round(user.Wallet[currency.Key])}\n");
+                Console.WriteLine("----------------------------------");
+            }
 
             Typewriter_Method.SlowType($"Progress:\t\t\t{user.Progress}\n");
             Console.WriteLine("----------------------------------");
@@ -81,7 +79,6 @@ namespace FireFighter_1.Menu_s
             Typewriter_Method.SlowType("\n\n\nPress any key to continue to menu\n");
 
             Console.ReadKey();
-            Console.WriteLine("\n---------------------------");
 
             
 

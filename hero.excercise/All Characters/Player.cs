@@ -26,18 +26,18 @@ namespace FireFighter_1
         public int EnergyLevel { get; set; }
         public int OriginalDamage { get; set; }
         public int RegulareDamage { get; set; }
-        public double Gold { get; set; }
-        public double Silver { get; set; }
-        public double Bronze { get; set; }
+        public Dictionary<string, double> Wallet { get; set; } = null;
+
+       
         public int Progress { get; set; }
 
         public Membership MemberCard = new Membership();
         public Customer UserCustomer = new Customer();
         public Dictionary<string, int> inventory { get; set; } = new Dictionary<string, int>()
         {
-            { "Redbull", 0},
-            { "Health Potion", 0},
-            { "Adolla Link", 0}
+            { "Redbull 500ml  ", 0},
+            { "Health Potion  ", 0},
+            { "Adolla Link  ", 0}
         };
 
 
@@ -46,6 +46,12 @@ namespace FireFighter_1
         public Player()
         {
             Name = Introduction.name;
+            Wallet = new()
+            {
+                { "Gold", 0 },
+                { "Silver", 0},
+                { "Bronze", 0 },
+            };
         }
 
         

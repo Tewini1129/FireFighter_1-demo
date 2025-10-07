@@ -86,7 +86,7 @@ namespace FireFighter_1
                 switch (FightOptions.SelectedIndex)
                 {
                     case 0:
-                        if (user.inventory["Health Potion"] > 0)
+                        if (user.inventory["Health Potion  "] > 0)
                         {
                             HealthPotion.Use(user);
                         }
@@ -100,7 +100,7 @@ namespace FireFighter_1
                         break;
 
                     case 1:
-                        if (user.inventory["Redbull"] > 0)
+                        if (user.inventory["Redbull  "] > 0)
                         {
                             Redbull.Use(user);
                         }
@@ -115,7 +115,7 @@ namespace FireFighter_1
                         break;
 
                     case 2:
-                        if (user.inventory["Adolla Link"] > 0)
+                        if (user.inventory["Adolla Link  "] > 0)
                         {
                             AdollaLink.Use(user);
                         }

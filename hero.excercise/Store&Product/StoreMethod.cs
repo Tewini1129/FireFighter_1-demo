@@ -17,12 +17,7 @@ namespace FireFighter_1.Menu_s
         public static string currency { get; private set; }
 
 
-
-        Redbull r1 = new Redbull();
-        Redbull r2 = new Redbull();
-        Redbull r3 = new Redbull();
-
-        public static List<Redbull> redbulls = new List<Redbull>()
+        public static List<Products> redbulls = new List<Products>()
             {
                 new Redbull(),
                 new Redbull(),
@@ -30,14 +25,7 @@ namespace FireFighter_1.Menu_s
             };
 
 
-
-
-
-        HealthPotion h1 = new HealthPotion();
-        HealthPotion h2 = new HealthPotion();
-        HealthPotion h3 = new HealthPotion();
-
-        public static List<HealthPotion> healthPotions = new List<HealthPotion>()
+        public static List<Products> healthPotions = new List<Products>()
             {
                 new HealthPotion(),
                 new HealthPotion(),
@@ -46,11 +34,7 @@ namespace FireFighter_1.Menu_s
 
 
 
-        AdollaLink a1 = new AdollaLink();
-        AdollaLink a2 = new AdollaLink();
-        AdollaLink a3 = new AdollaLink();
-
-        public static List<AdollaLink> adollaLink = new List<AdollaLink>()
+        public static List<Products> adollaLink = new List<Products>()
             {
                 new AdollaLink(),
                 new AdollaLink(),
@@ -58,15 +42,15 @@ namespace FireFighter_1.Menu_s
             };
 
 
-
+        
 
         public static int CurrencyMultiplyer;
         public static void ChooseCurrency()
         {
             
             string Prompt = "==== Choose Your Currency ====";
-            string[] Options = { "Gold", "Silver", "Bronze" };
-            FunMenu CurrencyMenu = new FunMenu(Prompt, Options);
+            string[] Options = [ "Gold", "Silver", "Bronze" ];
+            FunMenu CurrencyMenu = new(Prompt, Options);
             CurrencyMenu.Run();
 
             switch(CurrencyMenu.SelectedIndex)
@@ -85,14 +69,12 @@ namespace FireFighter_1.Menu_s
                     currency = "Bronze";
                     CurrencyMultiplyer = 3;
                     break;
-
             }
-
-            
         }
         //Store method
         public static void Store(Player user, Enemy enemy)
         {
+            
             ChooseCurrency();
 
             Console.Clear();
@@ -104,34 +86,15 @@ namespace FireFighter_1.Menu_s
             Typewriter_Method.SlowType($"\t1.Redbull 500ml");
             Typewriter_Method.SlowType($"\n\t2.Healing Potion 250ml");
             Typewriter_Method.SlowType($"\n\t3.Adolla Link");
-            Typewriter_Method.SlowType($"\n\nShopping Cart Total: {user.UserCustomer.Cart.Total * CurrencyMultiplyer} {currency} coins");
-
-
-
-
-            
-            //Current amount of gold
-            if (currency == "Gold")
-            {
-                
-                Typewriter_Method.SlowType($"\nYour currently have {user.Gold} {currency} coins");
-                userWalletIn = user.Gold;
-            }
-            else if (currency == "Silver")
-            {
-                Typewriter_Method.SlowType($"\n\nYour currently have {user.Silver} {currency} coins");
-                userWalletIn = user.Silver;
-            }
-            else if (currency == "Bronze")
-            {
-                Typewriter_Method.SlowType($"\n\nYour currently have {user.Bronze} {currency} coins");
-                userWalletIn = user.Bronze;
-            }
+            Typewriter_Method.SlowType($"\n\nShopping Cart Total: {Math.Round(user.UserCustomer.Cart.Total * CurrencyMultiplyer)} {currency} coins    {user.UserCustomer.Cart.nrItemsInCart}x Items");
+            Typewriter_Method.SlowType($"\nYour currently have {Math.Round(user.Wallet[currency])} {currency} coins");
+            userWalletIn = user.Wallet[currency];
             Introduction.Continue = false;
 
             do
-            { 
-                
+            {
+                user.UserCustomer.Cart.nrItemsInCart = user.UserCustomer.Cart.itemsInCart.Values.Sum();
+
                 //Menu
                 string Prompt = (
                         $"\n---------------------------\n\nStore manager - \"Welcome to store\"" +
@@ -139,14 +102,14 @@ namespace FireFighter_1.Menu_s
                         $"\n\n\t1.Redbull 500ml (Max Shield)" +
                         $"\n\t2.Healing Potion 250ml (Max Health and Energy)" +
                         $"\n\t3.Adolla Link (Max All)" +
-                        $"\n\nShopping Cart Total: {user.UserCustomer.Cart.Total * CurrencyMultiplyer} {currency} coins" +
-                        $"\n\nYour currently have {userWalletIn} {currency} coins"
+                        $"\n\nShopping Cart Total-Cost: {Math.Round(user.UserCustomer.Cart.Total * CurrencyMultiplyer)} {currency} coins    {user.UserCustomer.Cart.nrItemsInCart}x Items" +
+                        $"\n\nYour currently have {user.Wallet[currency]} {currency} coins"
                     );
 
                 string[] StoreItems = { 
-                    $"Redbull 500ml - {user.MemberCard.MembersPrice(Redbull.Price * CurrencyMultiplyer)} {currency}", 
-                    $"Healing Potion 250ml - {user.MemberCard.MembersPrice(HealthPotion.Price * CurrencyMultiplyer)} {currency}", 
-                    $"Adolla Link - {user.MemberCard.MembersPrice(AdollaLink.Price * CurrencyMultiplyer)} {currency}", 
+                    $"Redbull 500ml - {user.MemberCard.MembersPrice(ShoppingCart.r1.Price * CurrencyMultiplyer)} {currency}", 
+                    $"Healing Potion 250ml - {user.MemberCard.MembersPrice(ShoppingCart.h1.Price * CurrencyMultiplyer)} {currency}", 
+                    $"Adolla Link - {user.MemberCard.MembersPrice(ShoppingCart.a1.Price * CurrencyMultiplyer)} {currency}", 
                     "See Cart",
                     "Exchange Bronze",
                     "Upgrade MemberShip",
@@ -161,54 +124,14 @@ namespace FireFighter_1.Menu_s
                 {
                     case 0:
 
-                        if (Redbull.InStock == false)
-                        {
-                            Console.WriteLine("We are out of Redbull, sorry");
-                            Typewriter_Method.SlowType("-----------------", 90);
-                        }
-                        else
-                        {
-
-                            user.UserCustomer.Cart.itemsInCart[ShoppingCart.redbullLabel] += 1;
-                            user.UserCustomer.Cart.redbullInCart += 1;
-                            redbulls[0].InventoryChecker();
-                            redbulls.RemoveAt(0);
-                            user.UserCustomer.Cart.Total += (user.MemberCard.MembersPrice(Redbull.Price));
-                            
-                        }
+                        redbulls[0].AddToCart(user);
                         break;
                     case 1:
-                        if (HealthPotion.InStock == false)
-                        {
-                            Console.WriteLine("We are out of Health Potion's, sorry");
-                            Typewriter_Method.SlowType("-----------------", 90);
-
-                        }
-                        else
-                        {
-                            user.UserCustomer.Cart.itemsInCart[ShoppingCart.healthPotionLabel] += 1;
-                            user.UserCustomer.Cart.healthPotionInCart += 1;
-                            healthPotions[0].InventoryChecker();
-                            healthPotions.RemoveAt(0);
-                            user.UserCustomer.Cart.Total += (user.MemberCard.MembersPrice(HealthPotion.Price));
-                        }
+                        healthPotions[0].AddToCart(user);
                         break;
 
                     case 2:
-                        if (AdollaLink.InStock == false)
-                        {
-                            Console.WriteLine("We are out of Adolla Links, sorry");
-                            Typewriter_Method.SlowType("-----------------", 90);
-
-                        }
-                        else
-                        {
-                            user.UserCustomer.Cart.itemsInCart[ShoppingCart.adollaLinkLabel] += 1;
-                            user.UserCustomer.Cart.adollaLinkInCart += 1;
-                            adollaLink[0].InventoryChecker();
-                            adollaLink.RemoveAt(0);
-                            user.UserCustomer.Cart.Total += (user.MemberCard.MembersPrice(AdollaLink.Price));
-                        }
+                        adollaLink[0].AddToCart(user);
                         break;
 
                     case 3:
@@ -229,8 +152,6 @@ namespace FireFighter_1.Menu_s
                         break;
                 }
             } while (KeepShopping == true);
-
-
         }
     }
 }

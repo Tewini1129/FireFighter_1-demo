@@ -10,7 +10,7 @@ namespace FireFighter_1.Menu_s
     public class RestMethod
     {
         //Rest method
-        public static void Rest(Player user, Enemy enemy)
+        public static void Rest(Player user)
         {
             Introduction.Continue = false;
             Console.Clear();

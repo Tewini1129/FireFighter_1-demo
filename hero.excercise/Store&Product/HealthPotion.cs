@@ -10,9 +10,8 @@ namespace FireFighter_1.Store_Product
 {
     public class HealthPotion : Products
     {
-        public static string Name { get; set; }
         public static int HealthPotionQuantity { get; private set; }
-        public static int Price;
+        
 
         private static bool inStock = true;
         public static bool InStock
@@ -20,9 +19,12 @@ namespace FireFighter_1.Store_Product
             get { return inStock; }
             set { inStock = value; }
         }
+
+
+
         public HealthPotion()
         {
-            Name = $"Health Potion  ";
+            Name = "Health Potion  ";
             Price = 3;
             HealthPotionQuantity++;
         }
@@ -34,25 +36,30 @@ namespace FireFighter_1.Store_Product
 
             Typewriter_Method.SlowType($"\n\n{user.Name}'s Hp and Energy is fully restored\n\t{user.Name} Hp: {user.Hp} Energy Level: {user.EnergyLevel}\n");
 
-            user.inventory["Health Potion"] -= 1;
+            user.inventory["Health Potion  "] -= 1;
             Introduction.Continue = true;
             Typewriter_Method.SlowType("\n---------------------------\n", 90);
         }
         
         
-        public override int InventoryChecker()
+        public override bool InventoryChecker()
         {
            if(HealthPotionQuantity > 1)
            {
                 HealthPotionQuantity--;
                 AllProducts--;
-                return HealthPotionQuantity;
+                return true;
            }
            else
            {
                 InStock = false;
-                return 0;
+                return false;
             }
+        }
+
+        public override void RemoveFromStoreList()
+        {
+            StoreMethod.healthPotions.RemoveAt(0);
         }
 
     }

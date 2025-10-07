@@ -37,7 +37,7 @@ namespace FireFighter_1
                         break;
 
                     case 2:
-                        PrintStats.Stats(user, enemy);
+                        PrintStats.Stats(user);
                         Menu(user, enemy);
                         Introduction.Continue = true;
                         Introduction.EndGame = true;
@@ -52,7 +52,7 @@ namespace FireFighter_1
                         break;
 
                     case 4:
-                        RestMethod.Rest(user, enemy);
+                        RestMethod.Rest(user);
                         Menu(user, enemy);
                         Introduction.Continue = true;
                         Introduction.EndGame = true;

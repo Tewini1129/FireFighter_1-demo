@@ -69,7 +69,7 @@ namespace FireFighter_1
                             Typewriter_Method.SlowType($"You won against {enemy1.Name}\n");
                             if ((enemy1.Name == $"White Clad Lv.{user.Progress}") || (enemy1.Name == "Boss:White Clad"))
                             {
-                                user.Bronze += enemy1.Reward;
+                                user.Wallet["Bronze"] += enemy1.Reward;
                                 Typewriter_Method.SlowType($"Reward: ");
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Typewriter_Method.SlowType($"+{enemy1.Reward} Bronze\n");
@@ -78,8 +78,16 @@ namespace FireFighter_1
 
                                 win = true;
                             }
-                           
-                              
+                            else if ((enemy1.Name != $"White Clad Lv.{user.Progress}") || (enemy1.Name != "Boss:White Clad"))
+                            {
+                                user.Wallet["Bronze"] += enemy1.Reward;
+                                Typewriter_Method.SlowType($"Reward: ");
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Typewriter_Method.SlowType($"+{enemy1.Reward} Bronze\n");
+                                Console.ResetColor();
+                            }
+
+
                         }
                         else if ((enemy1.Hp > 0) && (user.Hp <= 0))
                         {
@@ -111,7 +119,7 @@ namespace FireFighter_1
 
                         Typewriter_Method.SlowType($"You successfully ran from {enemy1.Name}\n");
                         Introduction.Continue = true;
-                        Typewriter_Method.SlowType("\n-------🏃‍---🏃‍---🏃‍---🏃‍---🏃‍--------\n", 60);
+                        Typewriter_Method.SlowType("\n---C---O---W---A---R---D---\n", 60);
 
                     }
                 }

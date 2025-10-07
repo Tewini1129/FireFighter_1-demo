@@ -37,9 +37,10 @@ namespace FireFighter_1
             switch (CurrentDiscount)
             {
                 case 1.00:
-                    if (user.Bronze >= 10)
+                    if (user.Wallet["Bronze"] >= 10)
                     {
-                        user.Bronze -= 10;
+                        user.Wallet["Bronze"] -= 10;
+                        UserCustomer.Cart.Total = (UserCustomer.Cart.Total * CurrentDiscount);
                         StoreMethod.userWalletIn -= 10; 
                         CurrentDiscount = BronzeMember;
                         CurrentMemberShipLevel = "Bronze Member 5%";
@@ -58,13 +59,14 @@ namespace FireFighter_1
                     break;
 
                 case 0.95:
-                    if (user.Silver >= 10)
+                    if (user.Wallet["Silver"] >= 10)
                     {
-                        user.Silver -= 10;
+                        user.Wallet["Silver"] -= 10;
+                        UserCustomer.Cart.Total = (UserCustomer.Cart.Total * CurrentDiscount);
                         StoreMethod.userWalletIn -= 10;
                         CurrentDiscount = SilverMember;
                         CurrentMemberShipLevel = "Silver Member 10%";
-                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine("Congratulations! You are now upgraded to SilverMember");
                         Typewriter_Method.SlowType("---------------------\n", 90);
                         Console.ResetColor();
@@ -79,15 +81,16 @@ namespace FireFighter_1
                     break;
 
                 case 0.90:
-                    if (user.Gold >= 10)
+                    if (user.Wallet["Gold"] >= 10)
                     {
-                        user.Gold -= 10;
+                        user.Wallet["Gold"] -= 10;
+                        UserCustomer.Cart.Total = (UserCustomer.Cart.Total * CurrentDiscount);
                         StoreMethod.userWalletIn -= 10;
                         CurrentDiscount = GoldMember;
                         CurrentMemberShipLevel = "Gold Member 15%";
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Typewriter_Method.SlowType("---------------------\n", 90);
                         Console.WriteLine("Congratulations! You are now upgraded to GoldMember, the highest we offer!");
+                        Typewriter_Method.SlowType("---------------------\n", 90);
                         Console.ResetColor();
                     }
                     else

@@ -149,9 +149,10 @@ namespace FireFighter_1
             Typewriter_Method.SlowType("\nYou and the team enter the underground nether and find the mysterious lab\n");
             Typewriter_Method.SlowType("Find the White clad member to get a clue\n");
             Typewriter_Method.SlowType("\n\nPress any key to continue\n");
+            Console.ReadKey();
+
             while (Introduction.Continue == false)
             {
-                Console.ReadKey();
                     do
                     {
                     
@@ -163,8 +164,6 @@ namespace FireFighter_1
 
                         if (Fight.win == true)
                         {
-
-
                             Typewriter_Method.SlowType("\nYou escape before the White clads self destruct sequence explode\n");
                             Typewriter_Method.SlowType("In the lab you found out that lab created insects are what creates infernal's and demons\n");
                             Typewriter_Method.SlowType("No one believes you since it sounds crazy, and all the evidence got incinerated int the explosion. \nbut the White clad cant let anybody know...\n");
@@ -203,35 +202,42 @@ namespace FireFighter_1
         public static void WhiteCladAttack(Player user, Enemy enemy)
         {
             Introduction.Continue = false;
-            
 
-            string[] enemies = { "Infernal", "Demon", "Whiteclad" };
-            randomNumber = random.Next(0, 3);
-            Console.WriteLine("\n---------------------------\n\n");
-
+            Console.Clear();
             Typewriter_Method.SlowType("A member of the White clad attack your fire station with their helpers trying to kill you \n");
             Typewriter_Method.SlowType("Find and kill him in order to get the final clue\n");
             Typewriter_Method.SlowType("\n\nPress enter \"Enter\" to continue\n");
+            Console.ReadKey();
            
 
             while (Introduction.Continue == false)
             {
-                Console.ReadKey();
+
                 do
                 {
+                    randomNumber = random.Next(0, 3);
+                    Enemy enemy1 = new Enemy(user, randomNumber);
+
                     Console.Clear();
                     Console.WriteLine("\n---------------------------\n\n");
-                    Typewriter_Method.SlowType($"\nYou found a {enemy.Name}\n");
-                    Fight.EnemyFight(enemy, user);
-                    if (Fight.win == true)
-                    {
-                        Console.Clear();
-                        Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally started to gather\n");
-                        Introduction.EndGame = true;
-                        EndScreen.End(user);
-                    }
+                    
+                    Fight.EnemyFight(enemy1, user);
                         Introduction.Continue = true;
 
+                    if (Fight.win == true)
+                    {
+                        if (user.Progress < 5)
+                        {
+                            LevelUpRewards.LevelUp(user);
+                            Typewriter_Method.SlowType("\n---------------------------\n", 120);
+                        }
+
+                        Console.Clear();
+                        Typewriter_Method.SlowType("You found and killed him. His dying breath told you the 8 pillars have finally started to gather\nYou finished the game. Congratulations!\n\nPress any button to continue:");
+                        Console.ReadKey();
+
+                        Introduction.EndGame = true;
+                    }
                 } while ((randomNumber != 2)&& (user.Hp > 0));
             }
         }
