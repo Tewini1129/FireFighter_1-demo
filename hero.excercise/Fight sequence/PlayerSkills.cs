@@ -100,7 +100,7 @@ namespace FireFighter_1
             else if (user.PowerClass == 3)
             {
 
-                Typewriter_Method.SlowType($"{user.Name} creates fires away tiny seeds of sparks behind himself \n");
+                Typewriter_Method.SlowType($"{user.Name} creates away tiny seeds of sparks behind himself \n");
                 Typewriter_Method.SlowType($"The spiral around eachother in pairs creating 4 huge Pillars of fire \n");
                 Typewriter_Method.SlowType($"{user.Name} bends the pillars all in the dirrection of {enemy.Name} and blast him with extreme heat\n");
 
