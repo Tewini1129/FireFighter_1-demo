@@ -10,10 +10,9 @@ namespace FireFighter_1
 {
     public class Fight
     {
-        //public int user.regulareAttack;
-        public int unknown;
+        public int unknown{ get; private set; }
         public static bool win = false;
-        public static string userChoice = "";
+        public static string userChoice { get; private set; }
 
 
 

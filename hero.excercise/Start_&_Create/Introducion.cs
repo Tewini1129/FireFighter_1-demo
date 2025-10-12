@@ -15,16 +15,36 @@ namespace FireFighter_1
         //Introduction Variables
         public static bool Continue = false;
         public static bool EndGame = false;
-        public static string? userChoice = "";
 
 
         //Create variables
-        public static string? name = "";
-        public static string idCode = "";
-        public static int powerClass;
-        public static string? Confirm;
+        private static string? name = ""; 
+        public static string? Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private static string idCode = "";
+        public static string IdCode
+        {
+            get { return idCode; }
+            set { idCode = value; }
+        }
+        private static int powerClass;
+        public static int PowerClass
+        {
+            get { return powerClass; }
+            set { powerClass = value; }
+        }
         public static Random randomGenerated = new Random();
-        public static int randomNumber;
+        private static int randomNumber;
+        public static int RandomNumber
+        {
+            get { return randomNumber; }
+            set { randomNumber = value; }
+        }
+
 
 
 

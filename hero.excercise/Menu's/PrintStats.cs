@@ -55,9 +55,9 @@ namespace FireFighter_1.Menu_s
 
             foreach (var item in user.inventory)
             {
-                if (item.Value > 0)
+                if (item.Value.Amount > 0)
                 {
-                    Items += $"{item.Value}x {item.Key}\n";
+                    Typewriter_Method.SlowType($"{item.Value.Amount}x {item.Key}\n");
                 }
                 else 
                 {
@@ -66,15 +66,14 @@ namespace FireFighter_1.Menu_s
             }
             if(Empty == user.inventory.Count)
             {
-                Items = "Empty...";
+                Typewriter_Method.SlowType("Empty...");
             }
-            Typewriter_Method.SlowType(Items);
 
             Console.WriteLine("\n  >>>------<============>------<<<\n\n");
             
 
 
-            Console.WriteLine(user.UserCustomer.ToString());
+            Console.WriteLine(user.ToString());
 
             Typewriter_Method.SlowType("\n\n\nPress any key to continue to menu\n");
 

@@ -5,22 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FireFighter_1.Fight_sequence;
 
 namespace FireFighter_1.Store_Product
 {
-    public class Redbull: Products
+    public class Redbull: Products, IUseProduct
     {
-        public static int RedbullQuantity { get; set; }
-        
+        public static int RedbullQuantity { get; set; } 
 
-        private static bool inStock = true;
-        public static bool InStock
-        {
-            get { return inStock; }
-            set { inStock = value; }
-        }
 
-        
+        public static bool InStock { get; private set; }
+
+
+
         public Redbull()
         {
             Name = $"Redbull 500ml  ";
@@ -28,10 +25,11 @@ namespace FireFighter_1.Store_Product
             RedbullQuantity++;
         }
 
-        public static void Use(Player user)
+        public override void Use(Player user)
         {
             user.Shield = user.MaxShield;
-            user.inventory["Redbull  "] -= 1;
+            user.inventory["Redbull 500ml  "].Amount -= 1;
+            user.inventory["Redbull 500ml  "].Items.RemoveAt(0);
             Typewriter_Method.SlowType($"\n{user.Name} cracks a ice cold redbull...{user.Name} gets wings\n");
 
             Typewriter_Method.SlowType($"\n\n{user.Name}'s Shield is fully restored\n\t{user.Name} Shield: {user.Shield}\n");
@@ -46,7 +44,7 @@ namespace FireFighter_1.Store_Product
 
         public override bool InventoryChecker()
         {
-            if(RedbullQuantity > 1)
+            if(RedbullQuantity > 2)
             {
                 RedbullQuantity--;
                 AllProducts--;

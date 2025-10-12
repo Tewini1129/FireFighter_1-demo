@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 
 namespace FireFighter_1.Store_Product
 {
-    public class Customer
+    public abstract class Customer
     {
         
         public ShoppingCart Cart = new ShoppingCart();
-        public Customer()
-        {
-            
-        }
+        
 
         public override string ToString()
         {
             string Items = "";
             Player user = LogIn.currentUser;
             
-            if ((user.UserCustomer.Cart.itemsInCart["Redbull 500ml  "] <= 0)&&
-                (user.UserCustomer.Cart.itemsInCart["Health Potion  "] <= 0)&&
-                (user.UserCustomer.Cart.itemsInCart["Adolla Link  "] <= 0))
+            if ((user.Cart.itemsInCart["Redbull 500ml  "] <= 0)&&
+                (user.Cart.itemsInCart["Health Potion  "] <= 0)&&
+                (user.Cart.itemsInCart["Adolla Link  "] <= 0))
             {
                 Items = "Empty...";
             }
             else
             {
-                foreach (var item in user.UserCustomer.Cart.itemsInCart)
+                foreach (var item in user.Cart.itemsInCart)
                 {
                     if (item.Value > 0)
                     {

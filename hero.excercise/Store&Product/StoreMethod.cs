@@ -86,14 +86,14 @@ namespace FireFighter_1.Menu_s
             Typewriter_Method.SlowType($"\t1.Redbull 500ml");
             Typewriter_Method.SlowType($"\n\t2.Healing Potion 250ml");
             Typewriter_Method.SlowType($"\n\t3.Adolla Link");
-            Typewriter_Method.SlowType($"\n\nShopping Cart Total: {Math.Round(user.UserCustomer.Cart.Total * CurrencyMultiplyer)} {currency} coins    {user.UserCustomer.Cart.nrItemsInCart}x Items");
+            Typewriter_Method.SlowType($"\n\nShopping Cart Total: {Math.Round(user.MemberCard.MembersPrice(user.Cart.Total * CurrencyMultiplyer))} {currency} coins    {user.Cart.NrItemsInCart}x Items");
             Typewriter_Method.SlowType($"\nYour currently have {Math.Round(user.Wallet[currency])} {currency} coins");
             userWalletIn = user.Wallet[currency];
             Introduction.Continue = false;
 
             do
             {
-                user.UserCustomer.Cart.nrItemsInCart = user.UserCustomer.Cart.itemsInCart.Values.Sum();
+                user.Cart.NrItemsInCart = user.Cart.itemsInCart.Values.Sum();
 
                 //Menu
                 string Prompt = (
@@ -102,7 +102,7 @@ namespace FireFighter_1.Menu_s
                         $"\n\n\t1.Redbull 500ml (Max Shield)" +
                         $"\n\t2.Healing Potion 250ml (Max Health and Energy)" +
                         $"\n\t3.Adolla Link (Max All)" +
-                        $"\n\nShopping Cart Total-Cost: {Math.Round(user.UserCustomer.Cart.Total * CurrencyMultiplyer)} {currency} coins    {user.UserCustomer.Cart.nrItemsInCart}x Items" +
+                        $"\n\nShopping Cart Total-Cost: {user.Cart.Total * CurrencyMultiplyer} {currency} coins    {user.Cart.NrItemsInCart}x Items" +
                         $"\n\nYour currently have {user.Wallet[currency]} {currency} coins"
                     );
 
@@ -135,7 +135,7 @@ namespace FireFighter_1.Menu_s
                         break;
 
                     case 3:
-                        user.UserCustomer.Cart.ShoppingCartMenu(user, enemy, user.UserCustomer.Cart);
+                        user.Cart.ShoppingCartMenu(user, enemy, user.Cart);
                         break;
 
                     case 4:
@@ -143,7 +143,7 @@ namespace FireFighter_1.Menu_s
                         break;
 
                     case 5:
-                        user.MemberCard.UpgradeMemberShip(user.UserCustomer, user);
+                        user.MemberCard.UpgradeMemberShip(user);
                         break;
 
                     case 6:

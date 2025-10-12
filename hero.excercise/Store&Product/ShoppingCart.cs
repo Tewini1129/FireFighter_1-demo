@@ -13,10 +13,20 @@ namespace FireFighter_1.Store_Product
 {
     public class ShoppingCart
     {
-        public double Total;
-        public int nrItemsInCart;
-        public double currentPrice;
-        public Dictionary<string, int> itemsInCart;
+        private double total;//Method in here to add to total, public int addToTotal
+        public double Total
+        {
+            get { return total; }
+            set { total = value; }
+        }
+        private int nrItemsInCart;
+        public int NrItemsInCart 
+        {
+            get { return nrItemsInCart; }
+            set { nrItemsInCart = value; }
+        }
+        public double currentPrice { get; private set; }
+        public Dictionary<string, int> itemsInCart { get; private set; }
         Dictionary<string, (Products p, double price, List<Products> itemList)> StoreProducts;
 
         //Reference products
@@ -126,23 +136,27 @@ namespace FireFighter_1.Store_Product
                     if ((Cart.Total * StoreMethod.CurrencyMultiplyer) <= user.Wallet[StoreMethod.currency])
                     {
                         user.Wallet[StoreMethod.currency] -= (Cart.Total * StoreMethod.CurrencyMultiplyer);
-                        Typewriter_Method.SlowType($"-{Cart.Total} {StoreMethod.currency}\n");
+                        Typewriter_Method.SlowType($"-{Cart.Total * StoreMethod.CurrencyMultiplyer} {StoreMethod.currency}\n");
                         Cart.Total = 0;
 
                         for (int i = 0; i < itemsInCart[redbullLabel]; i++)
                         {
-                            user.inventory[redbullLabel]++;
+                            user.inventory[redbullLabel].Amount++;
+                            user.inventory[redbullLabel].Items.Add(new Redbull());
+
 
                         }
 
                         for (int i = 0; i < itemsInCart[healthPotionLabel]; i++)
                         {
-                            user.inventory[healthPotionLabel]++;
+                            user.inventory[healthPotionLabel].Amount++;
+                            user.inventory[healthPotionLabel].Items.Add(new HealthPotion());
                         }
 
                         for (int i = 0; i < itemsInCart[adollaLinkLabel]; i++)
                         {
-                            user.inventory[adollaLinkLabel]++;
+                            user.inventory[adollaLinkLabel].Amount++;
+                            user.inventory[adollaLinkLabel].Items.Add(new AdollaLink());
                         }
 
 

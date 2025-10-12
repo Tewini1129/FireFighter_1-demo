@@ -23,34 +23,34 @@ namespace FireFighter_1
                     {
                         if ((enemy.Name == "Boss:White Clad") || (enemy.Name == $"White Clad Lv.{user.Progress}"))
                         {
-                            Typewriter_Method.SlowType($"\n{enemy.Name} releases the pent up energy and blasts with a horrifying {enemy.ultimate} damage\n");
+                            Typewriter_Method.SlowType($"\n{enemy.Name} releases the pent up energy and blasts with a horrifying {enemy.Ultimate} damage\n");
                             Console.WriteLine("");
                         }
                         else if (enemy.Name == $"Demon Lv.{user.Progress}")
                         {
-                            Typewriter_Method.SlowType($"\n{enemy.Name} opens up his mouth breathing heavy fire out {enemy.ultimate} damage\n");
+                            Typewriter_Method.SlowType($"\n{enemy.Name} opens up his mouth breathing heavy fire out {enemy.Ultimate} damage\n");
                             Console.WriteLine("");
                         }
                         else if (enemy.Name == $"Infernal .{user.Progress}")
                         {
-                            Typewriter_Method.SlowType($"\n{enemy.Name} uses his charged up energy to Produce a devastating blow of {enemy.ultimate} damage\n");
+                            Typewriter_Method.SlowType($"\n{enemy.Name} uses his charged up energy to Produce a devastating blow of {enemy.Ultimate} damage\n");
                             Console.WriteLine("");
                         }
                         if (user.Shield <= 0)
                         {
-                            user.Hp -= enemy.ultimate;
+                            user.Hp -= enemy.Ultimate;
             
                         }
-                        else if (user.Shield < enemy.ultimate)
+                        else if (user.Shield < enemy.Ultimate)
                         {
-                            int damageOverflow = enemy.ultimate - user.Shield;
+                            int damageOverflow = enemy.Ultimate - user.Shield;
                             user.Shield = 0;
                             user.Hp -= damageOverflow;
             
                         }
                         else
                         {
-                            user.Shield -= enemy.ultimate;
+                            user.Shield -= enemy.Ultimate;
                         }
             
                         enemy.EnergyLevel = 0;

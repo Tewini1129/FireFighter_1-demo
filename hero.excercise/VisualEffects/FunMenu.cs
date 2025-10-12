@@ -8,9 +8,10 @@ namespace FireFighter_1
 {
     public class FunMenu
     {
-        public int SelectedIndex;
-        public string[] Options;
-        public string Prompt = $"";
+        //Debugging - Tried multiple breakpoints to make sure you cant go outside the menu and selected something that isnt meant to be an option
+        public int SelectedIndex { get; private set; }
+        public string[] Options { get; private set; }
+        private string Prompt = $"";
 
 
         public FunMenu(string prompt, string[] options)

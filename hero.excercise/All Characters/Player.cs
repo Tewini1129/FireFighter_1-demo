@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FireFighter_1
 {
 
-    public class Player
+    public class Player : Customer
     {
 
 
@@ -29,15 +29,14 @@ namespace FireFighter_1
         public Dictionary<string, double> Wallet { get; set; } = null;
 
        
-        public int Progress { get; set; }
+        public int Progress { get; set; }   
 
         public Membership MemberCard = new Membership();
-        public Customer UserCustomer = new Customer();
-        public Dictionary<string, int> inventory { get; set; } = new Dictionary<string, int>()
+        public Dictionary<string, InventoryItems> inventory { get; set; } = new Dictionary<string, InventoryItems>()
         {
-            { "Redbull 500ml  ", 0},
-            { "Health Potion  ", 0},
-            { "Adolla Link  ", 0}
+            { "Redbull 500ml  ", new InventoryItems()},
+            { "Health Potion  ", new InventoryItems()},
+            { "Adolla Link  ", new InventoryItems()}
         };
 
 
@@ -45,7 +44,7 @@ namespace FireFighter_1
         //Constructor
         public Player()
         {
-            Name = Introduction.name;
+            Name = Introduction.Name;
             Wallet = new()
             {
                 { "Gold", 0 },
@@ -57,17 +56,4 @@ namespace FireFighter_1
         
     }
 }
-
-
-
-
-
-       
-
-        
-    
-
-
-
-
 

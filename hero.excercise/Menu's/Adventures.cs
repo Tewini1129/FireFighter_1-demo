@@ -12,7 +12,7 @@ namespace FireFighter_1
     internal class Adventures
     {
         public static Random random = new Random();
-        public static int randomNumber;
+        public static int randomNumber { get; private set; }
 
         public static void AdventureMenu()
         {
@@ -102,7 +102,7 @@ namespace FireFighter_1
             do
             {
                 randomNumber = random.Next(0, 3);
-                Enemy enemy1 = new Enemy(user, randomNumber);
+                Enemy enemy1 = new(user, randomNumber);
 
                 Console.WriteLine("\n---------------------------\n\n");
                 Fight.EnemyFight(enemy1, user);

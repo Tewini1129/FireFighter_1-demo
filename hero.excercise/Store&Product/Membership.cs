@@ -25,7 +25,7 @@ namespace FireFighter_1
 
         }
 
-        public void UpgradeMemberShip(Customer UserCustomer, Player user)
+        public void UpgradeMemberShip( Player user)
         {
 
             
@@ -40,7 +40,7 @@ namespace FireFighter_1
                     if (user.Wallet["Bronze"] >= 10)
                     {
                         user.Wallet["Bronze"] -= 10;
-                        UserCustomer.Cart.Total = (UserCustomer.Cart.Total * CurrentDiscount);
+                        user.Cart.Total = (user.Cart.Total * CurrentDiscount);
                         StoreMethod.userWalletIn -= 10; 
                         CurrentDiscount = BronzeMember;
                         CurrentMemberShipLevel = "Bronze Member 5%";
@@ -62,7 +62,7 @@ namespace FireFighter_1
                     if (user.Wallet["Silver"] >= 10)
                     {
                         user.Wallet["Silver"] -= 10;
-                        UserCustomer.Cart.Total = (UserCustomer.Cart.Total * CurrentDiscount);
+                        user.Cart.Total = (user.Cart.Total * CurrentDiscount);
                         StoreMethod.userWalletIn -= 10;
                         CurrentDiscount = SilverMember;
                         CurrentMemberShipLevel = "Silver Member 10%";
@@ -84,7 +84,7 @@ namespace FireFighter_1
                     if (user.Wallet["Gold"] >= 10)
                     {
                         user.Wallet["Gold"] -= 10;
-                        UserCustomer.Cart.Total = (UserCustomer.Cart.Total * CurrentDiscount);
+                        user.Cart.Total = (user.Cart.Total * CurrentDiscount);
                         StoreMethod.userWalletIn -= 10;
                         CurrentDiscount = GoldMember;
                         CurrentMemberShipLevel = "Gold Member 15%";

@@ -14,17 +14,63 @@ namespace FireFighter_1
 
     public class Enemy
     {
-        
+
         //name, level, hp, damage,
-        
-        public string Name = "";
-        public int MaxHp;
-        public int Hp;
-        public int MaxEnergyLevel;
-        public int EnergyLevel;
-        public int Damage;
-        public int ultimate;
-        public double Reward;
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private int maxHp;
+        public int MaxHp
+        {
+            get { return maxHp; }
+            set { maxHp = value; }
+        }
+
+        private int hp;
+        public int Hp
+        {
+            get { return hp; }
+            set { hp = value; }
+        }
+
+        private int maxEnergyLevel;
+        public int MaxEnergyLevel
+        {
+            get { return maxEnergyLevel; }
+            set { maxEnergyLevel = value; }
+        }
+
+        private int energyLevel;
+        public int EnergyLevel
+        {
+            get { return energyLevel; }
+            set { energyLevel = value; }
+        }
+
+        private int damage;
+        public int Damage
+        {
+            get { return damage; }
+            set { damage = value; }
+        }
+
+        private int ultimate;
+        public int Ultimate
+        {
+            get { return ultimate; }
+            set { ultimate = value; }
+        }
+        private double reward;
+        public double Reward
+        {
+            get { return reward; }
+            set { reward = value; }
+        }
+
 
 
         public Enemy(Player user, int randomNumber)

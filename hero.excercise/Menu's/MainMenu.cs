@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FireFighter_1
 {
-    public class MenuOptions
+    public static class MenuOptions
     {
         //variables
         public static int creditCard;

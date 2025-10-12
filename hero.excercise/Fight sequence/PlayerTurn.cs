@@ -12,7 +12,7 @@ namespace FireFighter_1
     public  class PlayerTurn
     {
 
-        public static int Choice;
+        public static int Choice { get; private set; }
         
         public static void FightPlayerTurn(string userChoice, Player user, Enemy enemy)
         {
@@ -86,9 +86,9 @@ namespace FireFighter_1
                 switch (FightOptions.SelectedIndex)
                 {
                     case 0:
-                        if (user.inventory["Health Potion  "] > 0)
+                        if (user.inventory["Health Potion  "].Amount > 0)
                         {
-                            HealthPotion.Use(user);
+                            user.inventory["Health Potion  "].Items[0].Use(user);
                         }
                         else
                         {
@@ -100,9 +100,9 @@ namespace FireFighter_1
                         break;
 
                     case 1:
-                        if (user.inventory["Redbull  "] > 0)
+                        if (user.inventory["Redbull 500ml  "].Amount > 0)
                         {
-                            Redbull.Use(user);
+                            user.inventory["Redbull 500ml  "].Items[0].Use(user);
                         }
                         else
                         {
@@ -115,9 +115,9 @@ namespace FireFighter_1
                         break;
 
                     case 2:
-                        if (user.inventory["Adolla Link  "] > 0)
+                        if (user.inventory["Adolla Link  "].Amount > 0)
                         {
-                            AdollaLink.Use(user);
+                            user.inventory["Adolla Link  "].Items[0].Use(user);
                         }
                         else
                         {

@@ -5,15 +5,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FireFighter_1.Fight_sequence;
 
 namespace FireFighter_1.Store_Product
 {
-    public abstract class Products
+    public abstract class Products: IUseProduct
     {
 
-
-        public string Name;
-        public double Price;
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        private double price;
+        public double Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
         private static int allProducts;
         public static int AllProducts
         {
@@ -27,7 +37,7 @@ namespace FireFighter_1.Store_Product
             AllProducts++;
         }
 
-
+        public abstract void Use(Player user);
         public abstract bool InventoryChecker();
 
         public abstract void RemoveFromStoreList();
@@ -42,9 +52,9 @@ namespace FireFighter_1.Store_Product
             }
             else
             {
-                user.UserCustomer.Cart.itemsInCart[Name] += 1;
+                user.Cart.itemsInCart[Name] += 1;
                 RemoveFromStoreList();
-                user.UserCustomer.Cart.Total += (user.MemberCard.MembersPrice(Price));
+                user.Cart.Total += (Price);
             }
         }
 

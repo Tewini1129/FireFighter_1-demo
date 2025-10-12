@@ -1,5 +1,5 @@
 ﻿using System;
-using FireFIghter_1;
+using FireFighter_1;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;

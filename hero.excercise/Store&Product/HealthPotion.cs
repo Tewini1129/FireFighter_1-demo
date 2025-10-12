@@ -5,20 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FireFighter_1.Fight_sequence;
 
 namespace FireFighter_1.Store_Product
 {
-    public class HealthPotion : Products
+    public class HealthPotion : Products, IUseProduct
     {
         public static int HealthPotionQuantity { get; private set; }
-        
 
-        private static bool inStock = true;
-        public static bool InStock
-        {
-            get { return inStock; }
-            set { inStock = value; }
-        }
+
+        public static bool InStock { get; private set; }
+
 
 
 
@@ -29,14 +26,16 @@ namespace FireFighter_1.Store_Product
             HealthPotionQuantity++;
         }
 
-        public static void Use(Player user)
+        public override void Use(Player user)
         {
             user.Hp = user.MaxHp;
             user.EnergyLevel = user.MaxEnergyLevel;
 
             Typewriter_Method.SlowType($"\n\n{user.Name}'s Hp and Energy is fully restored\n\t{user.Name} Hp: {user.Hp} Energy Level: {user.EnergyLevel}\n");
 
-            user.inventory["Health Potion  "] -= 1;
+            user.inventory["Health Potion  "].Amount -= 1;
+            user.inventory["Health Potion  "].Items.RemoveAt(0);
+
             Introduction.Continue = true;
             Typewriter_Method.SlowType("\n---------------------------\n", 90);
         }
@@ -44,7 +43,7 @@ namespace FireFighter_1.Store_Product
         
         public override bool InventoryChecker()
         {
-           if(HealthPotionQuantity > 1)
+           if(HealthPotionQuantity > 2)
            {
                 HealthPotionQuantity--;
                 AllProducts--;
